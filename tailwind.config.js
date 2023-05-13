@@ -9,7 +9,11 @@ module.exports = {
     "./app.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'rect': '0px 0px 300px 300px #030303',
+      }
+    },
   },
   plugins: [],
 }
