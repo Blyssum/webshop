@@ -57,6 +57,17 @@ const noeDiggi = (product: Product) => {
                     <button class="buyButton" @click="noeDiggi(product)">{{ product.name }}</button>
                 </div>
             </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-x-2 border-b-2">
+                <div class=" p-5 h-52 w-full" v-for="product in products">
+                    <img class=" mx-auto w-32 h-32" :src="product.cover.media.url"/>
+                    <div class="text-sm text-white uppercase font-serif">{{
+                            product.calculatedPrice.totalPrice + "€"
+                        }}
+                    </div>
+                    <button class="buyButton" @click="noeDiggi(product)">{{ product.name }}</button>
+                </div>
+            </div>
         </div>
     </div>
 
