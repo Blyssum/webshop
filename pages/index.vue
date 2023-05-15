@@ -2,7 +2,7 @@
 
 import {getCategories, getProducts, setup} from "@shopware-pwa/shopware-6-client";
 import {Product} from "@shopware-pwa/commons";
-import noise from "./assets/images/noise.png";
+import noise from "assets/images/noise.png";
 import {backgroundColors} from "chalk";
 
 
@@ -20,7 +20,7 @@ onMounted(async () => {
 
 })
 
-const noeDiggi = (product: Product) => {
+const linkToProduct = (product: Product) => {
     alert("Du bekommst kein " + product.name)
 }
 
@@ -37,14 +37,14 @@ const noeDiggi = (product: Product) => {
                     <span class="text-white font-serif h-full my-auto px-3 border-e-2">BLYSSUM</span>
                 </div>
                 <div class="w-1/2 h-full inline-flex flex-row-reverse">
-                    <img class="my-1.5 w-11 h-7 px-1.5" src="~assets/images/shopping_bag2.png"/>
+                    <img class="my-1.5 w-11 h-7 px-1.5" src="~/assets/images/shopping_bag2.png"/>
                     <span class="text-white font-serif h-full my-auto px-3 border-x-2">ABOUT</span>
                     <span class="text-white font-serif h-full my-auto px-3 border-s-2">PRODUCTS</span>
                 </div>
             </div>
 
             <div class="object-contain">
-                <img class="border-white w-full h-fit border-x-2" src="~assets/images/exampleModel1.webp"/>
+                <img class="border-white w-full h-fit border-x-2" src="~/assets/images/exampleModel1.webp"/>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-2">
@@ -54,7 +54,7 @@ const noeDiggi = (product: Product) => {
                         product.calculatedPrice.totalPrice + "€"
                         }}
                     </div>
-                    <button class="buyButton" @click="noeDiggi(product)">{{ product.name }}</button>
+                    <nuxt-link class="buyButton" :to="{name: 'product', query: { id:product.id } }">{{ product.name }}</nuxt-link>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@ const noeDiggi = (product: Product) => {
                 <div class=" p-5 h-52 w-full" v-for="product in products">
                     <img class=" mx-auto w-32 h-32" :src="product.cover.media.url"/>
                     <div class="text-sm text-white uppercase font-serif">{{
-                            product.calculatedPrice.totalPrice + "€"
+                        product.calculatedPrice.totalPrice + "€"
                         }}
                     </div>
                     <button class="buyButton" @click="noeDiggi(product)">{{ product.name }}</button>
