@@ -20,7 +20,7 @@ onMounted(async () => {
         {
             "limit": 10,
             "includes": {
-                "product": ["cover", "media", "id", "name", "calculatedPrice"]
+                "product": ["cover", "media", "id", "name", "description", "calculatedPrice"]
             },
             "associations": {
                 "media": {}
@@ -34,25 +34,51 @@ onMounted(async () => {
     console.log(product);
 
 })
+
+let currentImageURL = product?.value?.cover.url;
+
+function setCurrentImage(url: string): void {
+    currentImageURL = url;
+    console.log(currentImageURL);
+}
+
 </script>
 
 <template>
-    <div class="w-screen h-screen bg-blend-color-burn bg-gray-800"
+    <div class="w-fit h-fit min-h-screen bg-blend-color-burn bg-gray-800 overflow-y-hidden"
          :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}">
-        <div class="w-1/2 2xl:w-1/2 h-screen mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
+        <div class="w-1/2 2xl:w-1/2 h-fit min-h-screen mx-auto shadow-rect flex flex-col  divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
             <divider/>
 
             <navbar/>
 
-            <div class="w-full h-full border-x-2 border-white">
-                <div class="items-start w-fit h-120 bg-gray-600">
-                    <img class="m-10 w-1/3 aspect-square object-cover" :src=" product?.media?.[0].media.url "/>
-                    <div class="m-10 w-1/4 h-1/3 bg-gray-800">
-                        <img class="aspect-square w-1/2 object-cover" v-for="image in product?.media?.values()" :src="image?.media.url" />
+            <div class="w-full h-full border-x-2 border-white inline-flex">
+                <div class="p-5 w-1/2">
+                    <img class=" aspect-square object-cover border-2 border-white" v-bind:src="currentImageURL"/>
+                    <div class="grid auto-cols-fr grid-flow-col gap-4 h-24 pt-5">
+                        <img class="aspect-square object-cover w-24 border-2 border-white" @click=" setCurrentImage(image?.media.url!); " v-for="image in product?.media?.values()" :src="image?.media.url" />
 
                     </div>
                 </div>
-                <div class="text-white">{{ product?.name }}</div>
+
+                <div class="p-10 w-1/2 text-white font-serif">
+                    <div class="font-bold text-2xl">{{ product?.name }}</div>
+
+                    <div class="font-light">{{ product?.calculatedPrice.totalPrice + "€" }}</div>
+
+                    <div class="text-base mt-5" >{{ product?.description }}</div>
+
+                    <div class="mt-5"> size:
+                        <br>
+                        <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> S </button>
+                        <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> M </button>
+                        <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> L </button>
+                    </div>
+
+                    <div class="text-center border-2 rounded-full mt-48 px-6 hover:bg-white hover:text-black transition-all"> ADD TO CART </div>
+                    <div class="text-center border-2 rounded-full mt-0.5 px-6 hover:bg-white hover:text-black transition-all"> PURCHASE </div>
+
+                </div>
             </div>
 
 

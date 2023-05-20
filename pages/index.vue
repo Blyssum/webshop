@@ -44,15 +44,19 @@ onMounted(async () => {
 
 
 <template>
-    <div class="w-screen h-screen bg-blend-color-burn bg-gray-800"
+    <div class="w-screen h-fit bg-blend-color-burn bg-gray-800"
          :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}">
-        <div class="w-1/2 2xl:w-1/2  h-screen mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
+        <div class="w-1/2 2xl:w-1/2 h-fit mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
             <divider />
 
             <navbar />
 
             <div class="object-contain">
                 <img class="w-full h-fit border-white border-x-2" src="~/assets/images/exampleModel1.webp"/>
+            </div>
+
+            <div class="p-5 text-center tobject-contain h-full border-x-2 border-white text-white font-serif">
+                Wir sind blyssum lorem impsum
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-x-2">
