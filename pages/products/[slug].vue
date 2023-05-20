@@ -5,7 +5,6 @@ import {useRoute} from "vue-router";
 import {ref} from "@vue/reactivity";
 import {onMounted} from "@vue/runtime-core";
 import noise from "assets/images/noise.png";
-import {getBiggestThumbnailUrl, getMedia, getProductThumbnailUrl} from "@shopware-pwa/helpers-next";
 
 const route = useRoute()
 
@@ -33,9 +32,11 @@ onMounted(async () => {
     product.value = (await getProduct(id!, criteria)).product
     console.log(product);
 
+    currentImageURL = product?.value?.media[0].media?.url;
+
 })
 
-let currentImageURL = product?.value?.cover.url;
+let currentImageURL = "";
 
 function setCurrentImage(url: string): void {
     currentImageURL = url;
@@ -45,39 +46,45 @@ function setCurrentImage(url: string): void {
 </script>
 
 <template>
-    <div class="w-fit h-fit min-h-screen bg-blend-color-burn bg-gray-800 overflow-y-hidden"
-         :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}">
-        <div class="w-1/2 2xl:w-1/2 h-fit min-h-screen mx-auto shadow-rect flex flex-col  divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
+    <div :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}"
+         class="w-screen h-fit min-h-screen bg-blend-color-burn bg-gray-800 overflow-y-hidden">
+        <div :style="{backgroundColor: '#030303'}" class="w-1/2 2xl:w-1/2 h-fit min-h-screen mx-auto shadow-rect flex flex-col  divide-y-2 divide-white">
             <divider/>
 
             <navbar/>
 
-            <div class="w-full h-full border-x-2 border-white inline-flex">
+            <div class="w-full h-fit border-x-2 border-white inline-flex">
                 <div class="p-5 w-1/2">
-                    <img class=" aspect-square object-cover border-2 border-white" v-bind:src="currentImageURL"/>
-                    <div class="grid grid-cols-4 grid-flow-col gap-4 h-24 pt-5">
-                        <img class="aspect-square object-cover border-2 border-white" @click=" setCurrentImage(image?.media.url!); " v-for="image in product?.media?.values()" :src="image?.media.url" />
+                    <img class="flex aspect-square object-cover border-2 border-white" :src="currentImageURL"/>
 
+                    <div class="flex flex-col-reverse ">
+                        <div class="grid grid-cols-4 pt-5 grid-flow-col gap-5 h-fit">
+                            <img v-for="image in product?.media?.values()" :src="image?.media.url" class="aspect-square object-cover border-2 border-white" @click=" setCurrentImage(image?.media.url!); " />
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="p-10 w-1/2 text-white font-serif">
-                    <div class="font-bold text-2xl">{{ product?.name }}</div>
+                <div class="w-1/2 py-5 pr-5">
+                    <div class="border-2 p-5 h-full text-white font-serif flex flex-col">
+                        <div class="font-bold text-2xl">{{ product?.name }}</div>
 
-                    <div class="font-light">{{ product?.calculatedPrice.totalPrice + "€" }}</div>
+                        <div class="font-light">{{ product?.calculatedPrice.totalPrice + "€" }}</div>
 
-                    <div class="text-base mt-5">{{ product?.description }}</div>
+                        <div class="text-base mt-5">{{ product?.description }}</div>
 
-                    <div class="mt-5"> size:
-                        <br>
-                        <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> S </button>
-                        <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> M </button>
-                        <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> L </button>
+                        <div class="mt-5"> size:
+                            <br>
+                            <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> S </button>
+                            <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> M </button>
+                            <button class="border-2 rounded-full mx-2 px-6 hover:bg-white hover:text-black transition-all"> L </button>
+                        </div>
+
+                        <div class="flex flex-col-reverse h-full">
+                            <div class="text-center border-2 rounded-full px-6 hover:bg-white hover:text-black transition-all"> ADD TO CART </div>
+                            <div class="text-center border-2 rounded-full mb-0.5 px-6 hover:bg-white hover:text-black transition-all"> PURCHASE </div>
+                        </div>
                     </div>
-
-                    <div class="text-center border-2 rounded-full mt-48 px-6 hover:bg-white hover:text-black transition-all"> ADD TO CART </div>
-                    <div class="text-center border-2 rounded-full mt-0.5 px-6 hover:bg-white hover:text-black transition-all"> PURCHASE </div>
-
                 </div>
             </div>
 

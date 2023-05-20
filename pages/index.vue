@@ -44,9 +44,9 @@ onMounted(async () => {
 
 
 <template>
-    <div class="w-screen h-fit bg-blend-color-burn bg-gray-800"
+    <div class="w-screen h-fit min-h-screen bg-blend-color-burn bg-gray-800"
          :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}">
-        <div class="w-1/2 2xl:w-1/2 h-fit mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
+        <div class="w-1/2 2xl:w-1/2 h-fit min-h-screen mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
             <divider />
 
             <navbar />
