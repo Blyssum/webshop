@@ -55,8 +55,8 @@ function setCurrentImage(url: string): void {
             <div class="w-full h-full border-x-2 border-white inline-flex">
                 <div class="p-5 w-1/2">
                     <img class=" aspect-square object-cover border-2 border-white" v-bind:src="currentImageURL"/>
-                    <div class="grid auto-cols-fr grid-flow-col gap-4 h-24 pt-5">
-                        <img class="aspect-square object-cover w-24 border-2 border-white" @click=" setCurrentImage(image?.media.url!); " v-for="image in product?.media?.values()" :src="image?.media.url" />
+                    <div class="grid grid-cols-4 grid-flow-col gap-4 h-24 pt-5">
+                        <img class="aspect-square object-cover border-2 border-white" @click=" setCurrentImage(image?.media.url!); " v-for="image in product?.media?.values()" :src="image?.media.url" />
 
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function setCurrentImage(url: string): void {
 
                     <div class="font-light">{{ product?.calculatedPrice.totalPrice + "€" }}</div>
 
-                    <div class="text-base mt-5" >{{ product?.description }}</div>
+                    <div class="text-base mt-5">{{ product?.description }}</div>
 
                     <div class="mt-5"> size:
                         <br>
