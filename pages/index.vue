@@ -46,7 +46,7 @@ onMounted(async () => {
 <template>
     <div class="w-screen h-fit min-h-screen bg-blend-color-burn bg-gray-800"
          :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}">
-        <div class="w-1/2 2xl:w-1/2 h-fit min-h-screen mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
+        <div class="w-1/2 2xl:w-1/3 h-fit min-h-screen mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
             <divider />
 
             <navbar />
@@ -61,7 +61,7 @@ onMounted(async () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-x-2">
                 <div class=" p-5 h-52 w-full" v-for="product in products">
-                    <img class=" mx-auto w-32 h-32" :src="product.cover.media.url"/>
+                    <img class=" mx-auto w-32 h-32 object-contain" :src="product.cover.media.url"/>
                     <div class="text-sm text-white uppercase font-serif" >
                         {{ product.calculatedPrice.totalPrice + "€" }}
                     </div>
@@ -71,7 +71,7 @@ onMounted(async () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-x-2">
                 <div class=" p-5 h-52 w-full" v-for="product in products">
-                    <img class=" mx-auto w-32 h-32" :src="product.cover.media.url"/>
+                    <img class=" mx-auto w-32 h-32 object-contain" :src="product.cover.media.url"/>
                     <div class="text-sm text-white uppercase font-serif" >
                         {{ product.calculatedPrice.totalPrice + "€" }}
                     </div>

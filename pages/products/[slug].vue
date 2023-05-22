@@ -48,7 +48,7 @@ function setCurrentImage(url: string): void {
 <template>
     <div :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}"
          class="w-screen h-fit min-h-screen bg-blend-color-burn bg-gray-800 overflow-y-hidden">
-        <div :style="{backgroundColor: '#030303'}" class="w-1/2 2xl:w-1/2 h-fit min-h-screen mx-auto shadow-rect flex flex-col  divide-y-2 divide-white">
+        <div :style="{backgroundColor: '#030303'}" class="w-1/2 2xl:w-1/3 h-fit min-h-screen mx-auto shadow-rect flex flex-col  divide-y-2 divide-white">
             <divider/>
 
             <navbar/>
