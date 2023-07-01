@@ -33,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div v-if="!selected" class="p-5 text-white font-serif border-x-2">
+    <div v-if="!selected" class="p-5 text-white font-serif border-x-2 text-sm">
 
         <div v-if="!customSettings">BLYSSUM.COM verwendet verschiedene Cookies. Technisch notwendige Cookies ermöglichen eine reibungslose Nutzung der Seite, darunter Produktwahl und Warenkorbfunktionen. Zudem nutzen wir Cookies zur Analyse und fortlaufenden Verbesserung der Website-Nutzung. Außerdem ermöglichen sie gezielte Werbeanzeigen, die Ihren Interessen entsprechen – sowohl auf unseren Seiten als auch außerhalb.
 
@@ -75,10 +75,10 @@ onMounted(() => {
 
         </div>
 
-        <div class="inline-flex mt-3">
-            <button @click="setCookieSettings('all')" class=" border-2 px-3 hover:underline underline-offset-2">ALLE COOKIES AKZEPTIEREN</button>
-            <button @click="setCookieSettings('required')" class="border-2 px-3 hover:underline underline-offset-2 mx-2">NUR TECHNISCHE COOKIES</button>
-            <button v-if="!customSettings" @click="customSettings=true" class="border-2 px-3 hover:underline underline-offset-22">EIGENE AUSWAHL</button>
+        <div class="mt-3">
+            <button @click="setCookieSettings('all')" class="w-full md:w-72 border-2 px-3 hover:underline underline-offset-2 m-0.5">ALLE COOKIES AKZEPTIEREN</button>
+            <button @click="setCookieSettings('required')" class="w-full md:w-72 border-2 px-3 hover:underline underline-offset-2 m-0.5">NUR TECHNISCHE COOKIES</button>
+            <button v-if="!customSettings" @click="customSettings=true" class="w-full md:w-72 border-2 px-3 hover:underline underline-offset-2 m-0.5">EIGENE AUSWAHL</button>
 
             <button v-else @click="setCookieSettings('own')" class="border-2 px-3 hover:underline underline-offset-22">AKZEPTIEREN</button>
 
