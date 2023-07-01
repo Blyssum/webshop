@@ -143,7 +143,7 @@
         <br>
         Geschäftsführer: Georg Methner & Moritz Peiffer
         <br>
-        E-Mail: naseumschlag69@gmail.com
+        E-Mail: blyssumclothing@gmail.com
         <br>
         Internet: www.blyssum.com
         <br><br>
@@ -213,7 +213,7 @@
         Kundenkonto transferiert werden. Weiterverkäufe von Gutscheinen sind nicht erlaubt.
         <br><br><br>
         <div class="font-bold text-xl">Falls Sie noch Fragen haben, wenden Sie sich an unseren Kundenservice über
-            naseumschlag69@gmail.com.
+            blyssumclothing@gmail.com.
         </div>
     </div>
 </template>
