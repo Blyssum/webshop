@@ -9,6 +9,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@shopware-pwa/nuxt3-module": "canary",
+    "@shopware-pwa/types": "^0.5.3",
+    "@types/js-cookie": "^3.0.3",
     "@types/node": "^18",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.5.0",
@@ -16,13 +19,15 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
-    "@shopware-pwa/commons": "^1.6.1",
-    "@shopware-pwa/composables-next": "^0.7.1",
-    "@shopware-pwa/shopware-6-client": "^1.6.1",
-    "@shopware-pwa/types": "^0.5.1",
+    "@paypal/paypal-js": "^6.0.0",
+    "@shopware-pwa/composables-next": "^0.8.2",
+    "@shopware-pwa/nuxt3-module": "^0.3.4",
     "js-cookie": "^3.0.5",
     "package-json-parser": "^2.2.0",
     "sass": "^1.62.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "typescript": "^5.0.4",
+    "vue": "^3.3.4",
+    "vuetify": "^3.3.1"
   }
 }

@@ -1,42 +1,31 @@
 <script lang="ts" setup>
 
-import {getCategories, getProducts, setup} from "@shopware-pwa/shopware-6-client";
-import {Product, ShopwareSearchParams, Includes } from "@shopware-pwa/commons";
-import noise from "assets/images/noise.png";
-import Divider from "~/components/divider.vue";
-import {PrepareSupportDefaultBehavior} from "vscode-languageserver-protocol";
-import Identifier = PrepareSupportDefaultBehavior.Identifier;
+import {useCart, useListing} from "@shopware-pwa/composables-next";
 
+const {search, getElements} = useListing({
+    listingType: "categoryListing",
+    categoryId: "fd20ff23a19b461893234aed8c06162a", // entrypoint to browse
+    defaultSearchCriteria: { // set the default criteria
+        limit: 10,
+        p: 1,
+    },
+});
 
+search({ // invoke search() method
+    includes: { // omit this parameter if you want to use the whole product entity
+        product: ["id", "name", "cover", "calculatedPrice", "translated"],
+        product_media: ["media"],
+        media: ["url", "thumbnails"],
+    },
+});
 
-const products = ref<Product[]>([])
+const {refreshCart} = await useCart();
 
 onMounted(async () => {
-    setup({
-        endpoint: "https://sw.blyssum.com",
-        accessToken: "SWSCN0JZTDGZWJBNNXI2CEZNQG",
-    });
-
-    const criteria =
-        {
-            "limit": 10,
-            "includes": {
-                "product": ["cover", "media", "id", "name", "calculatedPrice"]
-            },
-            "associations": {
-                "media": {}
-            }
-        };
-
-    const productsResponse = await getProducts(criteria)
-    products.value = productsResponse.elements
-    console.log(products.value)
-
-    const defaultsConfigBuilder =
-        require("@shopware-pwa/nuxt-module/api-defaults").default;
-    defaultsConfigBuilder().add("useCms.includes.",  "someCustomValue")
+    console.log(getElements)
 
 
+    await refreshCart();
 })
 
 
@@ -44,51 +33,56 @@ onMounted(async () => {
 
 
 <template>
-    <div class="w-screen h-fit min-h-screen bg-blend-color-burn bg-gray-800"
-         :style="{backgroundImage: 'url(' + noise + ')', backgroundColor:'#27292d', backgroundSize:'1%'}">
-        <div class="w-1/2 2xl:w-1/3 h-fit min-h-screen mx-auto shadow-rect flex flex-col divide-y-2 divide-white" :style="{backgroundColor: '#030303'}">
-            <divider />
+    <client-only><cookie-consent/></client-only>
 
-            <navbar />
+    <img class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png" alt=""/>
 
-            <div class="object-contain">
-                <img class="w-full h-fit border-white border-x-2" src="~/assets/images/exampleModel1.webp"/>
+    <v-carousel class="border-x-2 border-white" hide-delimiters>
+        <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        ></v-carousel-item>
+
+        <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
+        ></v-carousel-item>
+
+        <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        ></v-carousel-item>
+    </v-carousel>
+
+    <div class="p-5 text-center object-contain h-full border-x-2 border-white text-white font-serif">
+        Wir sind blyssum lorem impsum
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
+        <div v-for="product in getElements" class=" p-5 h-52">
+            <img :src="product.cover.media.url" class=" mx-auto w-32 h-32 object-contain" alt=""/>
+            <div class="text-sm text-white uppercase font-serif">
+                {{ product.calculatedPrice.totalPrice + "€" }}
             </div>
-
-            <div class="p-5 text-center tobject-contain h-full border-x-2 border-white text-white font-serif">
-                Wir sind blyssum lorem impsum
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-x-2">
-                <div class=" p-5 h-52 w-full" v-for="product in products">
-                    <img class=" mx-auto w-32 h-32 object-contain" :src="product.cover.media.url"/>
-                    <div class="text-sm text-white uppercase font-serif" >
-                        {{ product.calculatedPrice.totalPrice + "€" }}
-                    </div>
-                    <nuxt-link class="buyButton" :to="'products/' + product.name!.toLowerCase().split(' ').join('-') + '-' + product.id">{{ product.name }}</nuxt-link>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr w-full h-fit gap-0 border-white border-x-2">
-                <div class=" p-5 h-52 w-full" v-for="product in products">
-                    <img class=" mx-auto w-32 h-32 object-contain" :src="product.cover.media.url"/>
-                    <div class="text-sm text-white uppercase font-serif" >
-                        {{ product.calculatedPrice.totalPrice + "€" }}
-                    </div>
-                    <nuxt-link class="buyButton" :to="'products/' + product.name!.toLowerCase().split(' ').join('-') + '-' + product.id">{{ product.name }}</nuxt-link>
-                </div>
-            </div>
-
-            <divider/>
+            <nuxt-link :to="'products/' + product.name!.toLowerCase().split(' ').join('-') + '-' + product.id"
+                       class="buyButton">
+                {{ product.name }}
+            </nuxt-link>
         </div>
     </div>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
+        <div v-for="product in getElements" class=" p-5 h-52">
+            <img :src="product.cover.media.url" class=" mx-auto w-32 h-32 object-contain" alt=""/>
+            <div class="text-sm text-white uppercase font-serif">
+                {{ product.calculatedPrice.totalPrice + "€" }}
+            </div>
+            <nuxt-link :to="'products/' + product.name!.toLowerCase().split(' ').join('-') + '-' + product.id"
+                       class="buyButton">
+                {{ product.name }}
+            </nuxt-link>
+        </div>
+    </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 
 .buyButton {
-  @apply pb-2 align-middle hover:underline decoration-1 text-white decoration-gray-50 underline-offset-2 rounded w-full font-serif;
+  @apply pb-2 align-middle hover:underline decoration-1 text-white decoration-gray-50 underline-offset-2 rounded font-serif;
 }
 
 </style>

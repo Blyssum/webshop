@@ -1,11 +1,45 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/css/main.css'],
+  app: {
+    head: {
+      title: "BLYSSUM",
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      shopware: {
+        shopwareEndpoint: "https://sw.blyssum.com",
+        shopwareAccessToken: "SWSCCTZWZ281AURRUZLNT3DWBG",
+      }
+    }
+  },
+  modules: ["@shopware-pwa/nuxt3-module"],
+  css: [ '~/assets/css/main.css' ],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+  build: {
+    transpile: ['vuetify'],
+  },
+  vite: {
+    define: {
+      'process.env.DEBUG': false,
+    },
+  },
+
+  typescript: {
+    // typeCheck: true,
+    strict: true,
+  },
   component: true
+
 })
