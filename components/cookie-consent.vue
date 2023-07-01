@@ -80,7 +80,7 @@ onMounted(() => {
             <button @click="setCookieSettings('required')" class="w-full md:w-72 border-2 px-3 hover:underline underline-offset-2 m-0.5">NUR TECHNISCHE COOKIES</button>
             <button v-if="!customSettings" @click="customSettings=true" class="w-full md:w-72 border-2 px-3 hover:underline underline-offset-2 m-0.5">EIGENE AUSWAHL</button>
 
-            <button v-else @click="setCookieSettings('own')" class="border-2 px-3 hover:underline underline-offset-22">AKZEPTIEREN</button>
+            <button v-else @click="setCookieSettings('own')" class="w-full md:w-72 border-2 px-3 hover:underline underline-offset-2 m-0.5">AKZEPTIEREN</button>
 
         </div>
     </div>

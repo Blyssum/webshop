@@ -45,9 +45,9 @@ const openMenu = ref(false);
 
 
         <div class="absolute bg-almostBlack border-l-2 border-b-2 w-fit top-12 right-0 visible sm:invisible" v-if="openMenu">
-            <nuxt-link to="/products" class="p-3 h-10"> PRODUCTS </nuxt-link>
+            <nuxt-link to="/products" @click="openMenu=false" class="p-3 h-10"> PRODUCTS </nuxt-link>
             <br>
-            <nuxt-link to="/about" class="p-3 h-10"> ABOUT </nuxt-link>
+            <nuxt-link to="/about" @click="openMenu=false" class="p-3 h-10"> ABOUT </nuxt-link>
         </div>
     </div>
 
