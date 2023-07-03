@@ -40,7 +40,7 @@ onMounted(async () => {
 
                 <div class="flex my-auto">
                     <button class="border-2 w-9 h-9"
-                            @click="product.quantity++; changeProductQuantity({quantity: product.quantity, id: product.id } )">
+                            @click="product.quantity = product.quantity < 99 ? product.quantity+1 : product.quantity; changeProductQuantity({quantity: product.quantity, id: product.id } )">
                         +
                     </button>
                     <input v-model="product.quantity" class="bg-black border-y-2 text-center w-9 h-9"
@@ -48,7 +48,7 @@ onMounted(async () => {
                            min="1" type="number"
                            v-on:change="changeProductQuantity({quantity: product.quantity, id: product.id } )"/>
                     <button class="border-2 w-9 h-9"
-                            @click="product.quantity--; changeProductQuantity({quantity: product.quantity, id: product.id } )">
+                            @click="product.quantity = product.quantity > 1 ? product.quantity-1 : 1; changeProductQuantity({quantity: product.quantity, id: product.id } )">
                         -
                     </button>
                 </div>

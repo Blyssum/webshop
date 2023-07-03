@@ -24,7 +24,6 @@ const customSettings = ref<boolean>();
 
 onMounted(() => {
     preference.value = Cookies.get("cookiesSelected")!;
-    console.log(preference);
 
     customSettings.value = false;
     selected.value = Cookies.get("cookiesSelected")!=undefined;

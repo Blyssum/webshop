@@ -8,11 +8,8 @@
 
 <script setup lang="ts">
 import { SessionContext } from "@shopware-pwa/types";
-import {createShopwareContext, useSessionContext, useCart, useShopwareContext} from "@shopware-pwa/composables-next";
-import {createApp, ref} from "vue";
-import {useNuxtApp} from "#app";
-import {createInstance} from "@shopware-pwa/api-client";
-import App from "./app.vue";
+import {useSessionContext, useCart, useBreadcrumbs } from "@shopware-pwa/composables-next";
+import {createInstance } from "@shopware-pwa/api-client";
 
 
 const { refreshSessionContext } = useSessionContext();
@@ -25,10 +22,11 @@ const { data: sessionContextData } = await useAsyncData(
 );
 useSessionContext(sessionContextData.value as SessionContext);
 
+useBreadcrumbs();
 
 const runtimeConfig = useRuntimeConfig();
 
-const apiContext = createInstance({
+createInstance({
     endpoint: runtimeConfig.public.shopware.shopwareEndpoint,
     accessToken: runtimeConfig.public.shopware.shopwareAccessToken,
 });
@@ -40,11 +38,9 @@ const apiContext = createInstance({
 
 const { refreshCart } = useCart();
 
-onMounted(() => {
-    refreshSessionContext();
-
-
-    refreshCart();
+onMounted(async () => {
+    await refreshSessionContext();
+    await refreshCart();
 });
 
 </script>

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     public: {
       shopware: {
         shopwareEndpoint: "https://sw.blyssum.com",
-        shopwareAccessToken: "SWSCCTZWZ281AURRUZLNT3DWBG",
+        shopwareAccessToken: "SWSCAHBLREPMTFRUCK52B1ZPUQ",
       }
     }
   },

@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 
-import {useCart, useListing} from "@shopware-pwa/composables-next";
+import { useCart, useListing } from "@shopware-pwa/composables-next";
+import {getProductRoute} from "@shopware-pwa/helpers-next";
 
-const {search, getElements} = useListing({
+
+const {search, getElements } = useListing({
     listingType: "categoryListing",
-    categoryId: "fd20ff23a19b461893234aed8c06162a", // entrypoint to browse
+    categoryId: "bae9ba04cf8a4b588c0d0daafbc4a70c", // entrypoint to browse
     defaultSearchCriteria: { // set the default criteria
-        limit: 10,
+        limit: 20,
         p: 1,
     },
 });
@@ -21,10 +23,8 @@ search({ // invoke search() method
 
 const {refreshCart} = await useCart();
 
+
 onMounted(async () => {
-    console.log(getElements)
-
-
     await refreshCart();
 })
 
@@ -58,10 +58,10 @@ onMounted(async () => {
             <div class="text-sm text-white uppercase font-serif">
                 {{ product.calculatedPrice.totalPrice + "€" }}
             </div>
-            <nuxt-link :to="'products/' + product.name!.toLowerCase().split(' ').join('-') + '-' + product.id"
-                       class="buyButton">
+            <RouterLink
+                :to="'products/' + product.id" class="buyButton">
                 {{ product.name }}
-            </nuxt-link>
+            </RouterLink>
         </div>
     </div>
 
@@ -71,7 +71,7 @@ onMounted(async () => {
             <div class="text-sm text-white uppercase font-serif">
                 {{ product.calculatedPrice.totalPrice + "€" }}
             </div>
-            <nuxt-link :to="'products/' + product.name!.toLowerCase().split(' ').join('-') + '-' + product.id"
+            <nuxt-link :to="'products/' + product.id"
                        class="buyButton">
                 {{ product.name }}
             </nuxt-link>

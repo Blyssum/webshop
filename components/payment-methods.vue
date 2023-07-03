@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import {useCart, useCheckout, usePrice, useShopwareContext} from "@shopware-pwa/composables-next";
-import selectAll from "css-select";
 import {CreateOrderActions, CreateOrderData, loadScript, OnApproveActions, OnApproveData} from "@paypal/paypal-js";
-import {getFormattedPrice} from "@shopware-pwa/helpers-next";
 import {useRouter} from "vue-router";
 
 const {
@@ -28,7 +26,6 @@ const methods = await getPaymentMethods()
 
 const orderCreated = ref();
 const redirectPaymentUrl = ref();
-const isLoading = ref(true);
 
 onMounted(async () => {
 
@@ -49,19 +46,6 @@ onMounted(async () => {
 
 })
 
-const proxyPaymentMethod = async (name: string) =>
-{
-    for (let i = 0; i < methods.value.length; i++) {
-        if (methods.value[i].shortName == name) {
-            await setPaymentMethod(methods?.value[i]);
-            console.log(paymentMethod.value?.name);
-        }
-    }
-
-    const order = await createOrder();
-
-}
-
 const paypalMethod = computed(() => {
     return paymentMethods.value?.find(
         (method) => method.shortName === "pay_pal_payment_handler"
@@ -70,7 +54,7 @@ const paypalMethod = computed(() => {
 
 const renderPaypalButtons = async () => {
     const paypal = await loadScript({
-        clientId: "AUAcLFoadrmy9JiW2cHgriy1mTy0MCqQOP_1SSeQEUArz_zPeF1VcNY2CCxcFBQpf_N4g1k5wFVNJ1Bk",
+        clientId: "AcSSs6WLSfn7mER0wm3o2txOg-K2fU36RJsAVR0qpzonY1XA8NnWMbnh-DtmtnuJKXv6Pp_GXSvg7KNu",
         currency: "EUR",
     });
     if (!paypal || !paypal.Buttons) {
@@ -99,6 +83,7 @@ const renderPaypalButtons = async () => {
             const response = await apiInstance.invoke.post < {token: string} > (
                 "/store-api/paypal/express/create-order?isPayPalExpressCheckout=1"
             );
+            console.log(response?.data?.token);
             return response?.data?.token;
         },
 
