@@ -58,10 +58,10 @@ onMounted(async () => {
             <div class="text-sm text-white uppercase font-serif">
                 {{ product.calculatedPrice.totalPrice + "€" }}
             </div>
-            <RouterLink
-                :to="'products/' + product.id" class="buyButton">
+            <nuxt-link
+                :to="'/details/' + product.id" class="buyButton">
                 {{ product.name }}
-            </RouterLink>
+            </nuxt-link>
         </div>
     </div>
 
@@ -71,7 +71,7 @@ onMounted(async () => {
             <div class="text-sm text-white uppercase font-serif">
                 {{ product.calculatedPrice.totalPrice + "€" }}
             </div>
-            <nuxt-link :to="'products/' + product.id"
+            <nuxt-link :to="'/details/' + product.id"
                        class="buyButton">
                 {{ product.name }}
             </nuxt-link>

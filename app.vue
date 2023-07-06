@@ -22,8 +22,6 @@ const { data: sessionContextData } = await useAsyncData(
 );
 useSessionContext(sessionContextData.value as SessionContext);
 
-useBreadcrumbs();
-
 const runtimeConfig = useRuntimeConfig();
 
 createInstance({

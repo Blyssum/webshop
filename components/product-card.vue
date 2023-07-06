@@ -48,7 +48,7 @@ const addToCartProxy = async () => {
 
         <div class="w-1/2 py-5 pr-5">
             <div class="border-2 p-5 h-full text-white font-serif flex flex-col">
-                <div class="font-bold text-2xl">{{ getProductName({product: product }) }}</div>
+                <div class="font-bold text-2xl">{{ getProductName() }}</div>
 
                 <div class="font-light">{{ product?.calculatedPrice.totalPrice * count }}€</div>
 

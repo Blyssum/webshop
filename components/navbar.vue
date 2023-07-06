@@ -38,7 +38,7 @@ const openMenu = ref(false);
             </div>
 
             <div class="border-l-2 hidden sm:flex ">
-                <div class="px-3 h-fit my-auto"> PRODUCTS </div>
+                <nuxt-link to="/products" class="px-3 h-fit my-auto"> PRODUCTS </nuxt-link>
             </div>
 
         </div>
