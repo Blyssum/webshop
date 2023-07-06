@@ -2,7 +2,6 @@
 <script setup lang="ts">
 
 import {useListing} from "@shopware-pwa/composables-next";
-import { getProductName } from "@shopware-pwa/helpers-next";
 import {useRoute, useRouter} from "vue-router";
 
 const router = useRouter();

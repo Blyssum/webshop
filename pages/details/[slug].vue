@@ -6,6 +6,8 @@ import {
     useProductSearch,
     useShopwareContext
 } from "@shopware-pwa/composables-next";
+import { getProductName } from "@shopware-pwa/helpers-next";
+
 
 
 const route = useRoute();
@@ -27,7 +29,7 @@ const productResponse = await search(id!, {
         },
     },
     includes: { // omit this parameter if you want to use the whole product entity
-        product: ["id", "name", "cover", "calculatedPrice", "translated"],
+        product: ["id", "name", "cover", "calculatedPrice", "translated", "description"],
         product_media: ["media"],
         media: ["url", "thumbnails"],
     },
