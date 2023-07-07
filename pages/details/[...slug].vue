@@ -1,4 +1,5 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+
 import {useRoute} from "vue-router";
 import {onMounted} from "@vue/runtime-core";
 import {
@@ -6,8 +7,8 @@ import {
     useProductSearch,
     useShopwareContext
 } from "@shopware-pwa/composables-next";
-import { getProductName } from "@shopware-pwa/helpers-next";
-
+import {getProductName} from "@shopware-pwa/helpers-next";
+import ProductCard from "~/components/product-card.vue";
 
 
 const route = useRoute();
@@ -37,7 +38,6 @@ const productResponse = await search(id!, {
 });
 
 
-
 onMounted(async () => {
     console.log("test")
 
@@ -47,12 +47,14 @@ onMounted(async () => {
     await refreshCart();
 })
 
-
-
 </script>
 
 <template>
-    <div  v-if="productResponse?.product!=undefined && productResponse?.configurator!=undefined">
-        <product-card :product="productResponse!.product" :configurator="productResponse!.configurator" />
+    <div v-if="productResponse?.product!=undefined && productResponse?.configurator!=undefined">
+        <product-card :configurator="productResponse!.configurator" :product="productResponse!.product"/>
     </div>
 </template>
+
+<style scoped>
+
+</style>

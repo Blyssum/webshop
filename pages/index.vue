@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 
-import { useCart, useListing } from "@shopware-pwa/composables-next";
+import {useCart, useListing} from "@shopware-pwa/composables-next";
 import {getProductRoute} from "@shopware-pwa/helpers-next";
 
 
-const {search, getElements } = useListing({
+const {search, getElements} = useListing({
     listingType: "categoryListing",
     categoryId: "bae9ba04cf8a4b588c0d0daafbc4a70c", // entrypoint to browse
     defaultSearchCriteria: { // set the default criteria
@@ -33,48 +33,52 @@ onMounted(async () => {
 
 
 <template>
-    <client-only><cookie-consent/></client-only>
+    <div class="divide-y-2 divide-white">
+        <client-only>
+            <cookie-consent/>
+        </client-only>
 
-    <img class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png" alt=""/>
+        <img alt="" class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png"/>
 
-    <v-carousel class="border-x-2 border-white" hide-delimiters>
-        <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        ></v-carousel-item>
+        <v-carousel class="border-x-2 border-white" hide-delimiters>
+            <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            ></v-carousel-item>
 
-        <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
-        ></v-carousel-item>
+            <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
+            ></v-carousel-item>
 
-        <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        ></v-carousel-item>
-    </v-carousel>
+            <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            ></v-carousel-item>
+        </v-carousel>
 
-    <div class="p-5 text-center object-contain h-full border-x-2 border-white text-white font-serif">
-        Wir sind blyssum lorem impsum
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
-        <div v-for="product in getElements" class=" p-5 h-52">
-            <img :src="product.cover.media.url" class=" mx-auto w-32 h-32 object-contain" alt=""/>
-            <div class="text-sm text-white uppercase font-serif">
-                {{ product.calculatedPrice.totalPrice + "€" }}
-            </div>
-            <nuxt-link
-                :to="'/details/' + product.id" class="buyButton">
-                {{ product.name }}
-            </nuxt-link>
+        <div class="p-5 text-center object-contain h-full border-x-2 border-white text-white font-serif">
+            Wir sind blyssum lorem impsum
         </div>
-    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
-        <div v-for="product in getElements" class=" p-5 h-52">
-            <img :src="product.cover.media.url" class=" mx-auto w-32 h-32 object-contain" alt=""/>
-            <div class="text-sm text-white uppercase font-serif">
-                {{ product.calculatedPrice.totalPrice + "€" }}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
+            <div v-for="product in getElements" class=" p-5 h-52">
+                <img :src="product.cover.media.url" alt="" class=" mx-auto w-32 h-32 object-contain"/>
+                <div class="text-sm text-white uppercase font-serif">
+                    {{ product.calculatedPrice.totalPrice + "€" }}
+                </div>
+                <nuxt-link
+                        :to="'/details/' + product.id" class="buyButton">
+                    {{ product.name }}
+                </nuxt-link>
             </div>
-            <nuxt-link :to="'/details/' + product.id"
-                       class="buyButton">
-                {{ product.name }}
-            </nuxt-link>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
+            <div v-for="product in getElements" class=" p-5 h-52">
+                <img :src="product.cover.media.url" alt="" class=" mx-auto w-32 h-32 object-contain"/>
+                <div class="text-sm text-white uppercase font-serif">
+                    {{ product.calculatedPrice.totalPrice + "€" }}
+                </div>
+                <nuxt-link :to="'/details/' + product.id"
+                           class="buyButton">
+                    {{ product.name }}
+                </nuxt-link>
+            </div>
         </div>
     </div>
 </template>

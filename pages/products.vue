@@ -1,12 +1,11 @@
-
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useListing} from "@shopware-pwa/composables-next";
 import {useRoute, useRouter} from "vue-router";
 
 const router = useRouter();
 
-const {search, getElements } = useListing({
+const {search, getElements} = useListing({
     listingType: "categoryListing",
     categoryId: "bae9ba04cf8a4b588c0d0daafbc4a70c", // entrypoint to browse
     defaultSearchCriteria: { // set the default criteria
@@ -28,11 +27,11 @@ search({ // invoke search() method
 <template>
     <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 font-serif text-white border-x-2">
         <div v-for="product in getElements" class="w-full border-2">
-            <img @click="router.push('/details/' + product.id)" :src="product.cover.media.url" class="cursor-pointer p-16 mx-auto object-contain" alt=""/>
+            <img :src="product.cover.media.url" alt="" class="cursor-pointer p-16 mx-auto object-contain" @click="router.push('/details/' + product.id)"/>
             <div class="flex p-7 border-t-2 border-white">
-                <nuxt-link :to="'/details/' + product.id" class="buyButton"> {{ product.name }} </nuxt-link>
+                <nuxt-link :to="'/details/' + product.id" class="buyButton"> {{ product.name }}</nuxt-link>
 
-                <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice + "€" }} </div>
+                <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice + "€" }}</div>
             </div>
         </div>
     </div>
