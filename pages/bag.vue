@@ -22,7 +22,46 @@ onMounted(async () => {
     <div>
         <div v-if="cartItems.length!=0" class="divide-y-2 divide-white border-x-2 text-white font-serif">
 
-            <div v-for="product in cartItems" class="h-32 p-5 flex">
+            <div v-for="product in cartItems" class="h-24 p-2 flex sm:hidden">
+
+                <div class="w-2/3 inline-flex flex-row">
+                    <img :src="product.cover?.url" class=" p-1 aspect-square object-cover border-2">
+
+                    <div class="my-auto px-3">
+                        <div class="w-max"> {{ product.label }}</div>
+
+                        <div class="flex mt-3">
+                            <button class="border-2 w-7 h-7"
+                                    @click="product.quantity = product.quantity < 99 ? product.quantity+1 : product.quantity; changeProductQuantity({quantity: product.quantity, id: product.id } )">
+                                +
+                            </button>
+                            <input v-model="product.quantity" class="bg-black border-y-2 text-center w-7 h-7"
+                                   max="99"
+                                   min="1" type="number"
+                                   v-on:change="changeProductQuantity({quantity: product.quantity, id: product.id } )"/>
+                            <button class="border-2 w-7 h-7"
+                                    @click="product.quantity = product.quantity > 1 ? product.quantity-1 : 1; changeProductQuantity({quantity: product.quantity, id: product.id } )">
+                                -
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-1/3 inline-flex flex-row-reverse ">
+
+                    <button class="my-auto aspect-square text-center border-2 h-10 w-10 text-4xl"
+                            @click="removeItem(product)">-
+                    </button>
+                    <div class="my-auto mx-2 text-right w-14 underline underline-offset-2">
+                        {{ product.price.totalPrice }}€
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div v-for="product in cartItems" class="h-32 p-5 hidden sm:flex">
 
                 <div class="w-1/2 inline-flex flex-row">
                     <img :src="product.cover?.url" class="p-1 aspect-square object-cover border-2">

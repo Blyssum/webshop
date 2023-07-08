@@ -11,6 +11,7 @@ import {getProductName} from "@shopware-pwa/helpers-next";
 import ProductCard from "~/components/product-card.vue";
 
 
+
 const route = useRoute();
 
 const {refreshCart} = useCart();
@@ -23,18 +24,20 @@ const productResponse = await search(id!, {
     withCmsAssociations: true,
     criteria: {
         associations: {
-            manufacturer: {},
             properties: {},
-            options: {},
-
+            options: {
+                associations: {
+                    group: {},
+                },
+            },
+            manufacturer: {},
         },
-    },
-    includes: { // omit this parameter if you want to use the whole product entity
-        product: ["id", "name", "cover", "calculatedPrice", "translated", "description"],
-        product_media: ["media"],
-        media: ["url", "thumbnails"],
-    },
+        includes: {
+            "name": ["name"],
+        },
 
+
+    },
 });
 
 

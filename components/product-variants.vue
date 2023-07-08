@@ -37,7 +37,7 @@ const onHandleChange = async () => {
     const variantFound = await findVariantForSelectedOptions(
         getSelectedOptions.value
     );
-    const selectedOptionsVariantPath = "/products/" + variantFound?.id;
+    const selectedOptionsVariantPath = "/details/" + variantFound?.id;
     router.push(selectedOptionsVariantPath);
 
 
