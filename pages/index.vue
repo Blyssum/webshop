@@ -52,7 +52,7 @@ onMounted(async () => {
 
         <img alt="" @click="pushInfo('test', {timeout: 10000}); console.log('test')" class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png"/>
 
-        <Flicking class="border-x-2" :options="{ align: 'prev', circular: true }" @move-end="onMoveEnd">
+        <Flicking :plugins="plugins" class="border-x-2" :options="{ align: 'prev', circular: true }" @move-end="onMoveEnd">
             <div class="panel inline-flex w-full">
                 <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz2.jpeg" />
                 <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg" />
