@@ -110,10 +110,6 @@ const renderPaypalButtons = async () => {
             redirectPaymentUrl.value = handlePaymentResponse?.data?.redirectUrl;
             //
             console.log(handlePaymentResponse)
-
-            await router.push({
-                path: '/order-success'
-            });
         },
     })
         .render("#paypal-buttons");
