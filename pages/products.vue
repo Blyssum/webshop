@@ -6,11 +6,11 @@ import {useHead} from "unhead";
 
 const router = useRouter();
 
-const {search, getElements} = useListing({
+const {search, getElements, loadMore, getLimit } = useListing({
     listingType: "categoryListing",
     categoryId: "bae9ba04cf8a4b588c0d0daafbc4a70c", // entrypoint to browse
     defaultSearchCriteria: { // set the default criteria
-        limit: 20,
+        limit: 6,
         p: 1,
     },
 });
@@ -30,15 +30,22 @@ useHead({
 </script>
 
 <template>
-    <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 font-serif text-white border-x-2">
-        <div v-for="product in getElements" class="w-full border-2">
-            <img :src="product.cover.media.url" alt="" class="cursor-pointer p-16 mx-auto object-contain" @click="router.push('/details/' + product.id)"/>
-            <div class="flex p-7 border-t-2 border-white">
-                <nuxt-link :to="'/details/' + product.id" class="buyButton"> {{ product.name }}</nuxt-link>
+    <div class="p-5 font-serif text-white border-x-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div v-for="product in getElements" class="w-full border-2">
+                <img :src="product.cover.media.url" alt="" class="cursor-pointer p-16 mx-auto object-contain"
+                     @click="router.push('/details/' + product.id)"/>
+                <div class="flex p-7 border-t-2 border-white">
+                    <nuxt-link :to="'/details/' + product.id" class="buyButton"> {{ product.name }}</nuxt-link>
 
-                <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice }}0€</div>
+                    <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice }}0€</div>
+                </div>
             </div>
         </div>
+        <button @click="loadMore()" v-if="getLimit==getElements.length"
+                class="mx-auto flex text-center border-2 rounded-full px-6 py-1 mt-5 hover:bg-white hover:text-black transition-all w-fit">
+            Mehr laden
+        </button>
     </div>
 </template>
 

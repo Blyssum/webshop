@@ -63,8 +63,8 @@ onMounted(async () => {
             <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" alt=""/>
         </Flicking>
 
-        <div class="p-5 text-center border-x-2 border-white text-white font-serif">
-            TOPSELLERS:
+        <div class="p-5 text-center border-x-2 border-white text-lg text-white font-serif">
+            TOP SELLER
         </div>
 
         <div class="text-white font-serif border-x-2 p-5 ">
