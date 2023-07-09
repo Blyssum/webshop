@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
@@ -19,7 +20,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ["@shopware-pwa/nuxt3-module"],
+  modules: ["@shopware-pwa/nuxt3-module", 'nuxt-simple-sitemap'],
   css: [ '~/assets/css/main.css' ],
   postcss: {
     plugins: {

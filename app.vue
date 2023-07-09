@@ -10,6 +10,14 @@ import { SessionContext } from "@shopware-pwa/types";
 import {useSessionContext, useCart, useBreadcrumbs, useNotifications} from "@shopware-pwa/composables-next";
 import {createInstance } from "@shopware-pwa/api-client";
 
+useSeoMeta({
+    title: 'BLYSSUM',
+    ogTitle: 'My Amazing Site',
+    description: 'This is my amazing site, let me tell you all about it.',
+    ogDescription: 'This is my amazing site, let me tell you all about it.',
+    ogImage: 'https://example.com/image.png',
+    twitterCard: 'summary_large_image',
+})
 
 const { refreshSessionContext } = useSessionContext();
 
