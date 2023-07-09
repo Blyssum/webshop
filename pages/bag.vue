@@ -28,7 +28,7 @@ onMounted(async () => {
             <div v-for="product in cartItems" class="h-24 p-2 flex sm:hidden">
 
                 <div class="w-2/3 inline-flex flex-row">
-                    <img :src="product.cover?.url" class=" p-1 aspect-square object-cover border-2">
+                    <img :src="product.cover?.url" class=" p-1 aspect-square h-fit object-cover border-2">
 
                     <div class="my-auto px-3">
                         <div class="w-max"> {{ product.label }}</div>
