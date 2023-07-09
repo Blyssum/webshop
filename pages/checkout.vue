@@ -13,7 +13,8 @@ const {
     subtotal,
     totalPrice,
     shippingTotal,
-    addPromotionCode
+    addPromotionCode,
+    appliedPromotionCodes
 } = useCart();
 
 const {getFormattedPrice} = usePrice();
@@ -70,7 +71,7 @@ async function applyPromotionCode(): Promise<void> {
             <div class="flex sm:flex-row-reverse mt-2 sm:mt-0 w-1/2 h-8">
                 <input v-model="code" class="bg-black border-2 mr-1 sm:mr-0 border-white px-2 pt-1 pb-0.5" placeholder="Rabattcode">
 
-                <img class="border-2 border-white sm:mr-1" src="~assets/images/check.png" @click=" applyPromotionCode()"/>
+                <img class="border-2 border-white sm:mr-1 cursor-pointer" src="~assets/images/check.png" @click=" applyPromotionCode();"/>
             </div>
         </div>
 

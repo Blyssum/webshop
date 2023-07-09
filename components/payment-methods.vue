@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {useCart, useCheckout, useNotifications, usePrice, useShopwareContext} from "@shopware-pwa/composables-next";
+import {useCart, useCheckout, usePrice, useShopwareContext} from "@shopware-pwa/composables-next";
 import {CreateOrderActions, CreateOrderData, loadScript, OnApproveActions, OnApproveData} from "@paypal/paypal-js";
 import {useRouter} from "vue-router";
 
@@ -17,10 +17,12 @@ const { refreshCart,
     shippingTotal } = useCart();
 
 const { getFormattedPrice } = usePrice();
+
 const { apiInstance } = useShopwareContext();
+
 const router = useRouter();
+
 const methods = await getPaymentMethods()
-const { pushInfo } = useNotifications();
 
 const orderCreated = ref();
 const redirectPaymentUrl = ref();
@@ -87,46 +89,32 @@ const renderPaypalButtons = async () => {
             return response?.data?.token;
         },
 
-        onApprove: function(data, actions) {
-            return fetch('/demo/checkout/api/paypal/order/' + data.orderID + '/capture/', {
-                method: 'post'
-            }).then(function(res) {
-                return res.json();
-            }).then(async function (orderData) {
-                // Three cases to handle:
-                //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-                //   (2) Other non-recoverable errors -> Show a failure message
-                //   (3) Successful transaction -> Show confirmation or thank you
-
-                // This example reads a v2/checkout/orders capture response, propagated from the server
-                // You could use a different API or structure for your 'orderData'
-                var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
-
-                if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
-                    pushInfo('ERROR ' + errorDetail.issue, {timeout: 10000})
-                    return actions.restart(); // Recoverable state, per:
-                    // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
+        // Finalize the transaction after payer approval
+        // Will be called if the payment process is approved by paypal
+        onApprove: async (data: OnApproveData, actions: OnApproveActions) => {
+            const response = await apiInstance.invoke.post(
+                "/store-api/paypal/express/prepare-checkout?isPayPalExpressCheckout=1",
+                {
+                    token: data.orderID,
                 }
-
-                if (errorDetail) {
-                    var msg = 'Sorry, your transaction could not be processed.';
-                    if (errorDetail.description) msg += '\n\n' + errorDetail.description;
-                    if (orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
-                    pushInfo(msg, {timeout: 10000});
-                    return alert(msg); // Show a failure message (try to avoid alerts in production environments)
+            );
+            console.log(response)
+            orderCreated.value = await createOrder();
+            const handlePaymentResponse = await apiInstance.invoke.post(
+                "/store-api/handle-payment",
+                {
+                    orderId: orderCreated.value.id,
+                    successUrl: `${window.location.origin}/ExpressCheckout?order=${orderCreated.value.id}&success=true`,
                 }
+            );
+            redirectPaymentUrl.value = handlePaymentResponse?.data?.redirectUrl;
+            //
+            console.log(handlePaymentResponse)
 
-                // Successful capture! For demo purposes:
-                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                var transaction = orderData.purchase_units[0].payments.captures[0];
-                alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-
-                orderCreated.value = await createOrder();
-                await router.push({
-                    path: '/order-success'
-                });
+            await router.push({
+                path: '/order-success'
             });
-        }
+        },
     })
         .render("#paypal-buttons");
 };
@@ -139,6 +127,30 @@ const renderPaypalButtons = async () => {
 
 
     <div class="inline-flex w-full mx-auto" v-if="totalPrice!=0" id="paypal-buttons"></div>
+
+    <p
+            v-if="redirectPaymentUrl"
+            class="font-normal text-gray-700 dark:text-gray-400"
+    >
+        <a
+                :href="redirectPaymentUrl"
+                class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
+            Bezahlung fertigstellen
+            <svg
+                    class="ml-2 -mr-1 w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        fill-rule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                ></path>
+            </svg>
+        </a>
+    </p>
 
 </template>
 
