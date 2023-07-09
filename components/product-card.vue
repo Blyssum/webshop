@@ -70,7 +70,7 @@ const addToCartProxy = async () => {
 
                     <div class="text-base mt-3 text-white filter invert" v-html="product?.translated.description"></div>
 
-                    <product-variants/>
+                    <product-variants class="mt-3"/>
 
                     <div class="flex mt-5">
                         <button class="border-2 w-9 h-9 rounded-l-full" @click="count = count > 1 ? count-1 : 1; ">
