@@ -56,7 +56,7 @@ const paypalMethod = computed(() => {
 
 const renderPaypalButtons = async () => {
     const paypal = await loadScript({
-        clientId: "AcSSs6WLSfn7mER0wm3o2txOg-K2fU36RJsAVR0qpzonY1XA8NnWMbnh-DtmtnuJKXv6Pp_GXSvg7KNu",
+        clientId: "AfMJ4YAokKuzk2B4ntn5mo3OFZp1tNiz9cqrrluXuIuCEorn6wkNH2digURPCjxIrb_lAHS06VIDRFdC",
         currency: "EUR",
     });
     if (!paypal || !paypal.Buttons) {
