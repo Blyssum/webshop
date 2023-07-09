@@ -5,6 +5,7 @@ import {getFormattedPrice} from "@shopware-pwa/helpers-next";
 import Cookies from "js-cookie";
 import {getCurrentInstance, nextTick} from "vue/dist/vue";
 import {useHead} from "unhead";
+import {useRouter} from "vue-router";
 
 const {isGuestSession} = useUser();
 
@@ -21,13 +22,23 @@ const {getFormattedPrice} = usePrice();
 
 let code = "";
 const acceptedPolicy = ref(false);
+const router = useRouter();
 
 useHead({
     title: 'BLYSSUM | Checkout'
 })
 
 onMounted(async () => {
+    if (totalPrice.value == 0)
+    {
+        console.log(totalPrice.value)
 
+
+
+        await router.push({
+            path: '/order-success'
+        });
+    }
 })
 
 async function applyPromotionCode(): Promise<void> {
