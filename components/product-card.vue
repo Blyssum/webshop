@@ -65,7 +65,7 @@ const addToCartProxy = async () => {
                     <div class="inline-flex">
                         <div class="font-bold text-2xl">{{ product?.translated.name}}</div>
 
-                        <div class="ml-auto">{{ product?.calculatedPrice.totalPrice * count }}0€</div>
+                        <div class="ml-auto">{{ (product?.calculatedPrice.totalPrice * count).toString().substring(0, 4) }}0€</div>
                     </div>
 
                     <div class="text-base mt-3 text-white filter invert" v-html="product?.translated.description"></div>
