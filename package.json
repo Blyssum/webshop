@@ -19,6 +19,8 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.7.0",
+    "@egjs/vue3-flicking": "^4.10.8",
     "@paypal/paypal-js": "^6.0.0",
     "@shopware-pwa/composables-next": "^0.8.2",
     "@shopware-pwa/nuxt3-module": "^0.3.4",
@@ -27,7 +29,6 @@
     "sass": "^1.62.1",
     "scss": "^0.2.4",
     "typescript": "^5.0.4",
-    "vue": "^3.3.4",
-    "vuetify": "^3.3.1"
+    "vue": "^3.3.4"
   }
 }

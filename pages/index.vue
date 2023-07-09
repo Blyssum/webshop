@@ -1,31 +1,43 @@
 <script lang="ts" setup>
 
-import {useCart, useListing} from "@shopware-pwa/composables-next";
+import {useCart, useListing, useNotifications } from "@shopware-pwa/composables-next";
 import {getProductRoute} from "@shopware-pwa/helpers-next";
-
+import Flicking from "@egjs/vue3-flicking";
+import autoPlay from "@egjs/flicking-plugins/src/AutoPlay";
+import {AutoPlay} from "@egjs/flicking-plugins";
+import {useRouter} from "vue-router";
 
 const {search, getElements} = useListing({
     listingType: "categoryListing",
     categoryId: "bae9ba04cf8a4b588c0d0daafbc4a70c", // entrypoint to browse
     defaultSearchCriteria: { // set the default criteria
-        limit: 20,
+        limit: 2,
         p: 1,
+        sort: [
+            { "field": "sales", "order": "DESC" },
+        ]
     },
 });
 
 search({ // invoke search() method
     includes: { // omit this parameter if you want to use the whole product entity
-        product: ["id", "name", "cover", "calculatedPrice", "translated"],
+        product: ["id", "name", "cover", "calculatedPrice", "translated", "sales"],
         product_media: ["media"],
         media: ["url", "thumbnails"],
     },
 });
 
-const {refreshCart} = await useCart();
+const router = useRouter();
+const { refreshCart } = await useCart();
+const { pushInfo } = useNotifications();
+
+const plugins = [new AutoPlay({ duration: 3000, direction: "NEXT", stopOnHover: false })];
 
 
 onMounted(async () => {
     await refreshCart();
+    console.log(getElements)
+    pushInfo("test");
 })
 
 
@@ -38,48 +50,33 @@ onMounted(async () => {
             <cookie-consent/>
         </client-only>
 
-        <img alt="" class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png"/>
+        <img alt="" @click="pushInfo('test', {timeout: 10000}); console.log('test')" class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png"/>
 
-        <v-carousel class="border-x-2 border-white" hide-delimiters>
-            <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-            ></v-carousel-item>
+        <Flicking class="border-x-2" :options="{ align: 'prev', circular: true }" @move-end="onMoveEnd">
+            <div class="panel inline-flex w-full">
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz2.jpeg" />
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg" />
 
-            <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
-            ></v-carousel-item>
+            </div>
+            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"/>
+            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"/>
+        </Flicking>
 
-            <v-carousel-item cover src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            ></v-carousel-item>
-        </v-carousel>
-
-        <div class="p-5 text-center object-contain h-full border-x-2 border-white text-white font-serif">
-            Wir sind blyssum lorem impsum
+        <div class="p-5 text-center border-x-2 border-white text-white font-serif">
+            TOPSELLERS:
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
-            <div v-for="product in getElements" class=" p-5 h-52">
-                <img :src="product.cover.media.url" alt="" class=" mx-auto w-32 h-32 object-contain"/>
-                <div class="text-sm text-white uppercase font-serif">
-                    {{ product.calculatedPrice.totalPrice + "€" }}
+        <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 font-serif text-white border-x-2">
+            <div v-for="product in getElements" class="w-full border-2">
+                <img :src="product.cover.media.url" alt="" class="cursor-pointer p-16 mx-auto object-contain" @click="router.push('/details/' + product.id)"/>
+                <div class="flex p-7 border-t-2 border-white">
+                    <nuxt-link :to="'/details/' + product.id" class="buyButton"> {{ product.name }}</nuxt-link>
+
+                    <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice + "0€" }}</div>
                 </div>
-                <nuxt-link
-                        :to="'/details/' + product.id" class="buyButton">
-                    {{ product.name }}
-                </nuxt-link>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr h-fit gap-0 border-white border-x-2">
-            <div v-for="product in getElements" class=" p-5 h-52">
-                <img :src="product.cover.media.url" alt="" class=" mx-auto w-32 h-32 object-contain"/>
-                <div class="text-sm text-white uppercase font-serif">
-                    {{ product.calculatedPrice.totalPrice + "€" }}
-                </div>
-                <nuxt-link :to="'/details/' + product.id"
-                           class="buyButton">
-                    {{ product.name }}
-                </nuxt-link>
-            </div>
-        </div>
     </div>
 </template>
 

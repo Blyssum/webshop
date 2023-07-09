@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vuetify'],
+
   },
   vite: {
     define: {

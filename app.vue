@@ -2,14 +2,13 @@
 
     <NuxtLayout>
         <title>BLYSSUM</title>
-
         <NuxtPage />
     </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 import { SessionContext } from "@shopware-pwa/types";
-import {useSessionContext, useCart, useBreadcrumbs } from "@shopware-pwa/composables-next";
+import {useSessionContext, useCart, useBreadcrumbs, useNotifications} from "@shopware-pwa/composables-next";
 import {createInstance } from "@shopware-pwa/api-client";
 
 
@@ -21,7 +20,9 @@ const { data: sessionContextData } = await useAsyncData(
     async () => {
     }
 );
+
 useSessionContext(sessionContextData.value as SessionContext);
+useNotifications();
 
 const runtimeConfig = useRuntimeConfig();
 

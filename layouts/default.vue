@@ -13,10 +13,11 @@ import noise from "assets/images/noise.png";
 
             <slot />
 
-            <page-footer/>
+            <page-footer />
 
             <divider />
         </div>
+        <notifications />
     </div>
 </template>
 

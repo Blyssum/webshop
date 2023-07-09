@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {Product, PropertyGroup} from "@shopware-pwa/types";
-import {useAddToCart, useProduct} from "@shopware-pwa/composables-next";
+import {useAddToCart, useNotifications, useProduct} from "@shopware-pwa/composables-next";
 import {getProductRoute, getProductName} from "@shopware-pwa/helpers-next";
 import {useRouter} from "vue-router";
 
@@ -11,12 +11,14 @@ const props = defineProps<{
 
 const router = useRouter();
 const {product, configurator} = useProduct(props.product, props.configurator);
+const { pushInfo } = useNotifications();
 
 const currentImage = ref(0);
 const count = ref(1);
 
 const addToCartProxy = async () => {
 
+    pushInfo(count.value + (count.value == 1 ? ' Gegenstand' : ' Gegenstände') + ' zum Einkaufswagen hinzugefügt', {timeout: 3000});
 
     const {addToCart, quantity} = useAddToCart(product);
     quantity.value = count.value;
@@ -61,7 +63,7 @@ const addToCartProxy = async () => {
             <div class="p-3">
                 <div class="h-full text-white flex flex-col">
                     <div class="inline-flex">
-                        <div class="font-bold text-2xl">{{ product?.label}}</div>
+                        <div class="font-bold text-2xl">{{ product?.name}}</div>
 
                         <div class="ml-auto">{{ product?.calculatedPrice.totalPrice * count }}€</div>
                     </div>
@@ -87,7 +89,7 @@ const addToCartProxy = async () => {
                             PURCHASE
                         </nuxt-link>
                         <button class="text-center border-2 rounded-full px-6 hover:bg-white hover:text-black transition-all"
-                                @click="addToCartProxy()">
+                                @click="addToCartProxy();">
                             ADD TO CART
                         </button>
                     </div>
