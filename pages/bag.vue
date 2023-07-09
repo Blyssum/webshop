@@ -4,13 +4,16 @@ import noise from "assets/images/noise.png";
 import {useCart, usePrice} from "@shopware-pwa/composables-next";
 import {integer} from "vscode-languageserver-types";
 import checkout from "~/pages/checkout.vue";
+import {useHead} from "unhead";
 
 const {cartItems, subtotal, totalPrice, shippingTotal, changeProductQuantity, removeItem} = useCart();
 const {getFormattedPrice} = usePrice();
 
+useHead({
+    title: 'BLYSSUM | Bag'
+})
 
 onMounted(async () => {
-
 
     console.log(cartItems);
 })

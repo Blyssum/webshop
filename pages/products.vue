@@ -2,6 +2,7 @@
 
 import {useListing} from "@shopware-pwa/composables-next";
 import {useRoute, useRouter} from "vue-router";
+import {useHead} from "unhead";
 
 const router = useRouter();
 
@@ -21,6 +22,10 @@ search({ // invoke search() method
         media: ["url", "thumbnails"],
     },
 });
+
+useHead({
+    title: 'BLYSSUM | Products'
+})
 
 </script>
 

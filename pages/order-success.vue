@@ -1,9 +1,13 @@
 <script setup lang="ts">
 
 import {useNotifications} from "@shopware-pwa/composables-next";
+import {useHead} from "unhead";
 
 const { pushInfo } = useNotifications();
 
+useHead({
+    title: 'BLYSSUM | Fertiggestellt'
+})
 
 </script>
 

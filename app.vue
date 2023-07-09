@@ -1,7 +1,6 @@
 <template>
 
     <NuxtLayout>
-        <title>BLYSSUM</title>
         <NuxtPage />
     </NuxtLayout>
 </template>

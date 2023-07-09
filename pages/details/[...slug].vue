@@ -9,6 +9,7 @@ import {
 } from "@shopware-pwa/composables-next";
 import {getProductName} from "@shopware-pwa/helpers-next";
 import ProductCard from "~/components/product-card.vue";
+import {useHead} from "unhead";
 
 
 
@@ -29,6 +30,11 @@ const { data: productResponse } = await useAsyncData(
 
             }
         });
+
+        useHead({
+            title: 'BLYSSUM | ' + productResponse.product.translated.name
+        })
+
         return productResponse;
     },
     { server: false }

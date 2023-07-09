@@ -2,7 +2,11 @@
 
 import noise from "assets/images/noise.png";
 import Divider from "~/components/divider.vue";
+import {useHead} from "unhead";
 
+useHead({
+    title: 'BLYSSUM | About'
+})
 
 </script>
 

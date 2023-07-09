@@ -1,5 +1,9 @@
 <script lang="ts" setup>
+import {useHead} from "unhead";
 
+useHead({
+    title: 'BLYSSUM | Kontakt'
+})
 </script>
 
 <template>

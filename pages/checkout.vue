@@ -4,6 +4,7 @@ import {useCart, usePrice, useUser} from "@shopware-pwa/composables-next";
 import {getFormattedPrice} from "@shopware-pwa/helpers-next";
 import Cookies from "js-cookie";
 import {getCurrentInstance, nextTick} from "vue/dist/vue";
+import {useHead} from "unhead";
 
 const {isGuestSession} = useUser();
 
@@ -18,6 +19,10 @@ const {
 const {getFormattedPrice} = usePrice();
 
 let code = "";
+
+useHead({
+    title: 'BLYSSUM | Checkout'
+})
 
 onMounted(async () => {
 

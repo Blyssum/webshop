@@ -1,5 +1,10 @@
 <script setup lang="ts">
 
+import {useHead} from "unhead";
+
+useHead({
+    title: 'BLYSSUM | Shipping'
+})
 </script>
 
 <template>

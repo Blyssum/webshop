@@ -4,6 +4,7 @@ import {useCart, useListing } from "@shopware-pwa/composables-next";
 import Flicking from "@egjs/vue3-flicking";
 import {AutoPlay} from "@egjs/flicking-plugins";
 import {useRouter} from "vue-router";
+import {useHead} from "unhead";
 
 const {search, getElements} = useListing({
     listingType: "categoryListing",
@@ -30,6 +31,9 @@ const { refreshCart } = await useCart();
 
 const plugins = [new AutoPlay({ duration: 6000, direction: "NEXT", stopOnHover: false })];
 
+useHead({
+    title: 'BLYSSUM'
+})
 
 onMounted(async () => {
     await refreshCart();
