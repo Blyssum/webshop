@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 
-import {useCart, useListing, useNotifications } from "@shopware-pwa/composables-next";
-import {getProductRoute} from "@shopware-pwa/helpers-next";
+import {useCart, useListing } from "@shopware-pwa/composables-next";
 import Flicking from "@egjs/vue3-flicking";
-import autoPlay from "@egjs/flicking-plugins/src/AutoPlay";
 import {AutoPlay} from "@egjs/flicking-plugins";
 import {useRouter} from "vue-router";
 
@@ -29,15 +27,13 @@ search({ // invoke search() method
 
 const router = useRouter();
 const { refreshCart } = await useCart();
-const { pushInfo } = useNotifications();
 
-const plugins = [new AutoPlay({ duration: 3000, direction: "NEXT", stopOnHover: false })];
+const plugins = [new AutoPlay({ duration: 6000, direction: "NEXT", stopOnHover: false })];
 
 
 onMounted(async () => {
     await refreshCart();
     console.log(getElements)
-    pushInfo("test");
 })
 
 
@@ -50,16 +46,16 @@ onMounted(async () => {
             <cookie-consent/>
         </client-only>
 
-        <img alt="" @click="pushInfo('test', {timeout: 10000}); console.log('test')" class="h-fit border-white border-x-2" src="~assets/images/trippytongueBanner.png"/>
+        <img alt="" @click="router.push('/about')" class="border-white border-x-2" src="~assets/images/trippytongueBanner.png"/>
 
-        <Flicking :plugins="plugins" class="border-x-2" :options="{ align: 'prev', circular: true }" @move-end="onMoveEnd">
-            <div class="panel inline-flex w-full">
-                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz2.jpeg" />
-                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg" />
+        <Flicking :plugins="plugins" class="border-x-2" :options="{ align: 'prev', circular: true }">
+            <nuxt-link to="/details/01891d544470708287dd102981fd7217" class="panel inline-flex w-full cursor-pointer">
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz2.jpeg"  alt=""/>
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg"  alt=""/>
 
-            </div>
-            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"/>
-            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"/>
+            </nuxt-link>
+            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg" alt=""/>
+            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" alt=""/>
         </Flicking>
 
         <div class="p-5 text-center border-x-2 border-white text-white font-serif">

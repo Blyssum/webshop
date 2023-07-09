@@ -37,6 +37,8 @@ onMounted(async () => {
     {
         console.log(totalPrice.value)
 
+
+
         await router.push({
             path: '/'
         });
@@ -108,7 +110,7 @@ const renderPaypalButtons = async () => {
             //
 
             await router.push({
-                path: '/'
+                path: '/order-success'
             });
         },
     })

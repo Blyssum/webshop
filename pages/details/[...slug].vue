@@ -20,25 +20,19 @@ const {apiInstance} = useShopwareContext();
 
 const id = route.params.slug as string
 
-const productResponse = await search(id!, {
-    withCmsAssociations: true,
-    criteria: {
-        associations: {
-            properties: {},
-            options: {
-                associations: {
-                    group: {},
-                },
-            },
-            manufacturer: {},
-        },
-        includes: {
-            "name": ["name"],
-        },
+const { data: productResponse } = await useAsyncData(
+    "cmsProduct" + id!,
+    async () => {
+        const productResponse = await search(id!, {
+            withCmsAssociations: true,
+            criteria: {
 
-
+            }
+        });
+        return productResponse;
     },
-});
+    { server: false }
+);
 
 
 onMounted(async () => {

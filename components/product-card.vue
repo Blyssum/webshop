@@ -19,7 +19,7 @@ const count = ref(1);
 const addToCartProxy = async () => {
 
     pushInfo(count.value + (count.value == 1 ? ' Gegenstand' : ' Gegenstände') + ' zum Einkaufswagen hinzugefügt', {timeout: 3000});
-
+    console.log(product)
     const {addToCart, quantity} = useAddToCart(product);
     quantity.value = count.value;
     await addToCart();
@@ -63,27 +63,29 @@ const addToCartProxy = async () => {
             <div class="p-3">
                 <div class="h-full text-white flex flex-col">
                     <div class="inline-flex">
-                        <div class="font-bold text-2xl">{{ product?.name}}</div>
+                        <div class="font-bold text-2xl">{{ product?.translated.name}}</div>
 
                         <div class="ml-auto">{{ product?.calculatedPrice.totalPrice * count }}€</div>
                     </div>
 
-                    <div class="text-base mt-5">{{ product?.description }}</div>
+                    <div class="text-base mt-5">{{ product?.translated.description }}</div>
 
                     <product-variants/>
 
                     <div class="flex mt-5">
-                        <button class="border-2 w-9 h-9 rounded-l-full" @click="count = count < 99 ? count+1 : count;">
-                            +
-                        </button>
-                        <input v-model="count" class="bg-black border-y-2 text-center w-9 h-9" min="1" type="number"/>
-                        <button class="border-2 w-9 h-9 rounded-r-full" @click="count = count > 1 ? count-1 : 1; ">
+                        <button class="border-2 w-9 h-9 rounded-l-full" @click="count = count > 1 ? count-1 : 1; ">
                             -
+                        </button>
+
+                        <input v-model="count" class="bg-black border-y-2 text-center w-9 h-9" min="1" type="number"/>
+
+                        <button class="border-2 w-9 h-9 rounded-r-full" @click="count = count < 99 ? count+1 : count;">
+                            +
                         </button>
                     </div>
 
 
-                    <div class="flex flex-col-reverse h-full">
+                    <div class="flex flex-col-reverse h-full mt-5">
                         <nuxt-link to="/bag" @click="addToCartProxy()"
                                    class="mt-1 text-center border-2 rounded-full mb-0.5 px-6 hover:bg-white hover:text-black transition-all">
                             PURCHASE
@@ -131,14 +133,14 @@ const addToCartProxy = async () => {
 
             <div class="w-1/2 py-5 pr-5">
                 <div class="border-2 p-5 h-full text-white font-serif flex flex-col">
-                    <div class="font-bold text-2xl">{{ getProductName() }}</div>
+                    <div class="font-bold text-2xl">{{ product?.translated.name }}</div>
 
-                    <div class="font-light">{{ product?.calculatedPrice.totalPrice * count }}€</div>
+                    <div class="font-light">{{ (product?.calculatedPrice.totalPrice * count).toString().substring(0, 4) }}0€</div>
 
 
-                    <div class="text-base mt-5">{{ product?.description }}</div>
+                    <div class="text-base mt-3 text-white filter invert" v-html="product?.translated.description"></div>
 
-                    <product-variants/>
+                    <product-variants class="mt-2"/>
 
                     <div class="flex mt-5">
                         <button class="border-2 w-9 h-9 rounded-l-full" @click="count = count < 99 ? count+1 : count;">
