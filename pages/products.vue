@@ -44,7 +44,7 @@ useHead({
         </div>
         <button @click="loadMore()" v-if="getLimit==getElements.length"
                 class="mx-auto flex text-center border-2 rounded-full px-6 py-1 mt-5 hover:bg-white hover:text-black transition-all w-fit">
-            Mehr laden
+            Weitere...
         </button>
     </div>
 </template>
