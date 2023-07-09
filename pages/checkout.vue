@@ -38,15 +38,15 @@ async function applyPromotionCode(): Promise<void> {
         <div class="text-white font-serif sm:inline-flex p-5 border-x-2 border-white w-full">
             <div class="w-1/2">
                 <div>
-                    <div class="text-lg">Subtotal</div>
+                    <div class="text-lg">Subtotal:</div>
                     <div>{{ getFormattedPrice(subtotal) }}</div>
                 </div>
                 <div>
-                    <div class="text-lg">Shipping estimate</div>
+                    <div class="text-lg">Shipping:</div>
                     <div>{{ getFormattedPrice(shippingTotal) }}</div>
                 </div>
                 <div>
-                    <div class="text-lg">Order total</div>
+                    <div class="text-lg">Order total:</div>
                     <div>{{ getFormattedPrice(totalPrice) }}</div>
                 </div>
             </div>

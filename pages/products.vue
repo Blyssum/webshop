@@ -31,7 +31,7 @@ search({ // invoke search() method
             <div class="flex p-7 border-t-2 border-white">
                 <nuxt-link :to="'/details/' + product.id" class="buyButton"> {{ product.name }}</nuxt-link>
 
-                <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice + "€" }}</div>
+                <div class="text-2xl ml-auto"> {{ product.calculatedPrice.totalPrice }}0€</div>
             </div>
         </div>
     </div>
