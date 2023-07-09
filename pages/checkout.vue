@@ -19,6 +19,7 @@ const {
 const {getFormattedPrice} = usePrice();
 
 let code = "";
+const acceptedPolicy = ref(false);
 
 useHead({
     title: 'BLYSSUM | Checkout'
@@ -54,6 +55,16 @@ async function applyPromotionCode(): Promise<void> {
                     <div class="text-lg">Order total:</div>
                     <div>{{ getFormattedPrice(totalPrice) }}</div>
                 </div>
+
+                <div class="mt-2">
+                    <input type="checkbox" class="mr-0.5" v-model="acceptedPolicy">
+
+                    Ich habe die
+                    <nuxt-link to="/policy" class="underline underline-offset-2 text-purple-600">AGB</nuxt-link>
+                    und den
+                    <nuxt-link to="/policy" class="underline underline-offset-2 text-purple-600">Datenschutz</nuxt-link>
+                    gelesen und bin einverstanden.
+                </div>
             </div>
 
             <div class="flex sm:flex-row-reverse mt-2 sm:mt-0 w-1/2 h-8">
@@ -63,9 +74,9 @@ async function applyPromotionCode(): Promise<void> {
             </div>
         </div>
 
-        <div class="p-5 border-white border-x-2 text-white font-serif">
+        <div class="p-5 border-white border-x-2 text-white font-serif"  v-if="acceptedPolicy">
 
-            <payment-methods/>
+            <payment-methods />
 
         </div>
     </div>

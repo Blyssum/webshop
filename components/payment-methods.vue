@@ -123,9 +123,7 @@ const renderPaypalButtons = async () => {
 
 <template>
 
-    <div class="inline-flex flex-row w-full pt-3">
 
-    </div>
     <div class="inline-flex w-full mx-auto" v-if="totalPrice!=0" id="paypal-buttons"></div>
 
 </template>
