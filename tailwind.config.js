@@ -19,7 +19,7 @@ module.exports = {
         'giroPayBlue': '#000268',
         'almostBlack': '#030303',
         'textBeige': '#DBD5CB',
-        'borderGray': '#373634',
+        'borderGray': '#3a362e',
         'buttonBeige': '#6B6255',
       },
     },
