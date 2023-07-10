@@ -6,7 +6,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-
+        { name: 'google-site-verification', content: 'RJ5wF4EZWSm7DGx0iVjukXX89mMMRZt2Edq1btd_aTM' }
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
