@@ -50,7 +50,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="text-white font-serif">
+    <div class="text-textBeige font-serif">
         <div v-for="optionGroup in getOptionGroups" :key="optionGroup.id">
             <div class="text-lg">
                 {{ optionGroup.name }}:
@@ -59,8 +59,8 @@ onMounted(async () => {
                 <button
                         v-for="option in optionGroup.options"
                         :key="option.id"
-                        :class="{ 'text-black bg-white': isOptionSelected(option.id), }"
-                        class="px-6 mx-1 rounded-full hover:bg-white hover:text-black transition-all border-2"
+                        :class="{ 'text-black bg-textBeige border-textBeige': isOptionSelected(option.id), }"
+                        class="px-6 mx-1 rounded-full hover:bg-textBeige hover:border-textBeige hover:text-black transition-all border-2 border-buttonBeige"
                         @click="handleChange(optionGroup.name, option.id, onHandleChange)"
                 >
                     {{ option.name }}

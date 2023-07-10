@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="text-white font-serif border-x-2 grid-cols-5 grid p-4 text-sm lg:text-base">
+    <div class="text-textBeige font-serif border-x-2 border-borderGray grid-cols-5 grid p-4 text-sm lg:text-base">
         <div class="flex flex-col col-span-2">
             <nuxt-link to="/contact" class="footerButton">Kontakt</nuxt-link>
             <nuxt-link to="/about" class="footerButton">About</nuxt-link>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="text-white font-serif text-center border-x-2 p-1">
+    <div class="text-textBeige font-serif text-center border-x-2 border-borderGray p-1">
         BLYSSUM©
     </div>
 </template>

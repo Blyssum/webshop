@@ -9,7 +9,7 @@ useHead({
 </script>
 
 <template>
-    <div class="text-white font-serif p-5 border-x-2">
+    <div class="text-textBeige font-serif p-5 border-x-2 border-buttonBeige">
         <div class="text-xl">B. Kundeinformationen
         Allgemeine Geschäftsbedingungen und Kundeninformation
         (Stand 16. Juni 2023)
