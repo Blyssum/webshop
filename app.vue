@@ -1,5 +1,5 @@
 <template>
-
+    <meta name="google-site-verification" content="RJ5wF4EZWSm7DGx0iVjukXX89mMMRZt2Edq1btd_aTM" />
     <NuxtLayout>
         <NuxtPage />
     </NuxtLayout>
