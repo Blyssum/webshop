@@ -12,10 +12,10 @@ useHead({
 
 
 <template>
-    <div class="divide-white divide-y-2">
-        <img class="border-x-2 border-white" src="~/assets/images/aboutBild.png"/>
+    <div class="divide-borderGray divide-y-2">
+        <img class="border-x-2 border-borderGray" src="~/assets/images/aboutBild.png"/>
 
-        <div class="p-5 leading-6 text-sm md:text-base md:leading-8 object-contain h-full border-x-2 border-white text-white font-serif indent-7">
+        <div class="p-5 leading-6 text-sm md:text-base md:leading-8 object-contain h-full border-x-2 border-borderGray text-textBeige font-serif indent-7">
             Wir sind Blyssum, eine neue Bekleidungsmarke bestehend aus jungen und unabhängigen Designern.
             Seit Anfang 2023 verbessern wir kontinuierlich unsere Designs und Ideen. Als in Deutschland ansässiges
             Unternehmen produzieren wir so fair wie möglich, indem wir grüne Energien und hochwertige Ressourcen

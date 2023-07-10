@@ -12,7 +12,7 @@ useHead({
 </script>
 
 <template>
-    <div class="text-white font-serif text-center p-5 border-x-2">
+    <div class="text-textBeige font-serif text-center p-5 border-x-2 border-borderGray">
         Ihre Bestellung wurde aufgenommen und wird verarbeitet. <br>
         Eine Rechnung wurde an ihre hinterlegte E-Mail gesendet. <br>
         Sobald ihre Bestellung produziert wurde erhalten sie eine Sendeverfolgung. <br>

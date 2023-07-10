@@ -8,11 +8,11 @@ useHead({
 </script>
 
 <template>
-    <div class="text-white font-serif border-x-2 p-5">
+    <div class="text-textBeige font-serif border-x-2 border-borderGray p-5">
         <div class="font-bold text-2xl">Versandkonditionen</div>
         <div class="mt-5  md:text-lg">Shirts & Baby-Tee:</div>
 
-        <div class="grid grid-cols-5 text-sm md:text-base grid-rows-4 grid-flow-row auto-cols-auto border-2 p-3 mt-1 gap-3">
+        <div class="grid grid-cols-5 text-sm md:text-base grid-rows-4 grid-flow-row auto-cols-auto border-2 border-borderGray p-3 mt-1 gap-3">
 
             <div class="flex flex-col col-span-2">Land</div>
             <div class="flex flex-col">Erstes Produkt</div>
