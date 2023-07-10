@@ -12,10 +12,10 @@ import {createInstance } from "@shopware-pwa/api-client";
 
 useSeoMeta({
     title: 'BLYSSUM',
-    ogTitle: 'My Amazing Site',
-    description: 'This is my amazing site, let me tell you all about it.',
-    ogDescription: 'This is my amazing site, let me tell you all about it.',
-    ogImage: 'https://example.com/image.png',
+    ogTitle: 'BLYSSUM CLOTHING',
+    description: 'Affordable Streetwear by BLYSSUM',
+    ogDescription: 'Look at multiple Designs by BLYSSUM in our Onlineshop.',
+    ogImage: '/assets/images/seoLogo.png',
     twitterCard: 'summary_large_image',
 })
 
