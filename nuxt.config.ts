@@ -6,6 +6,9 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'title', content: 'BLYSSUM' },
+        { name: 'description', content: 'look at multiple Designs by BLYSSUM in our ONLINESHOP.' },
+
 
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

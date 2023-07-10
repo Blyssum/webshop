@@ -9,6 +9,8 @@
 import { SessionContext } from "@shopware-pwa/types";
 import {useSessionContext, useCart, useBreadcrumbs, useNotifications} from "@shopware-pwa/composables-next";
 import {createInstance } from "@shopware-pwa/api-client";
+import {useSeoMeta} from "unhead";
+
 
 useSeoMeta({
     title: 'BLYSSUM',
