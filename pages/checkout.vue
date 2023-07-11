@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import {getCurrentInstance, nextTick} from "vue/dist/vue";
 import {useHead} from "unhead";
 import {useRouter} from "vue-router";
+import Test from "~/components/test.vue";
 
 const {isGuestSession} = useUser();
 
@@ -29,11 +30,9 @@ useHead({
 })
 
 onMounted(async () => {
-    if (totalPrice.value == 0)
+    if (subtotal.value == 0)
     {
         console.log(totalPrice.value)
-
-
 
         await router.push({
             path: '/order-success'
@@ -55,6 +54,7 @@ async function applyPromotionCode(): Promise<void> {
 
         <div class="sm:inline-flex p-5 border-x-2 border-borderGray w-full">
             <div class="w-1/2">
+                <div v-if="subtotal!=0">
                 <div>
                     <div class="text-lg">Subtotal:</div>
                     <div>{{ getFormattedPrice(subtotal) }}</div>
@@ -66,6 +66,7 @@ async function applyPromotionCode(): Promise<void> {
                 <div>
                     <div class="text-lg">Order total:</div>
                     <div>{{ getFormattedPrice(totalPrice) }}</div>
+                </div>
                 </div>
 
                 <div class="mt-2">
@@ -86,9 +87,9 @@ async function applyPromotionCode(): Promise<void> {
             </div>
         </div>
 
-        <div class="p-5 border-borderGray border-x-2 font-serif"  v-if="acceptedPolicy">
+        <div class="p-5 border-borderGray border-x-2 font-serif" >
 
-            <payment-methods />
+            <test :acceptedPolicy="acceptedPolicy" />
 
         </div>
     </div>
