@@ -56,7 +56,7 @@ onMounted(async () => {
                             @click="removeItem(product)">-
                     </button>
                     <div class="my-auto mx-2 text-right w-14 underline underline-offset-2">
-                        {{ product.price.totalPrice }}0€
+                        {{ (product.price.totalPrice + "0").toString().substring(0, 5) }}€
                     </div>
 
 
@@ -78,7 +78,7 @@ onMounted(async () => {
                             @click="removeItem(product)">-
                     </button>
                     <div class="my-auto mx-5 text-right w-14 underline underline-offset-2">
-                        {{ product.price.totalPrice }}0€
+                        {{ (product.price.totalPrice + "0").toString().substring(0, 5) }}€
                     </div>
 
                     <div class="flex my-auto">
@@ -107,7 +107,7 @@ onMounted(async () => {
 
                 <div class="inline-flex flex-row-reverse h-20 p-5 w-1/2">
                     <div class="my-auto mx-5 text-right w-14 underline underline-offset-2">
-                        {{ totalPrice }}0€
+                        {{ (totalPrice).toString().substring(0, 5) }}€
                     </div>
                 </div>
 
