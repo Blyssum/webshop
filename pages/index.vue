@@ -54,13 +54,17 @@ onMounted(async () => {
              src="~assets/images/trippytongueBanner.png"/>
 
         <Flicking :plugins="plugins" class="border-borderGray border-x-2" :options="{ align: 'prev', circular: true }">
-            <nuxt-link to="/details/01891d544470708287dd102981fd7217" class="panel inline-flex w-full cursor-pointer">
+            <div class="panel inline-flex w-full cursor-pointer">
                 <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz2.jpeg" alt=""/>
-                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg" alt=""/>
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg" alt=""/>3
 
-            </nuxt-link>
-            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg" alt=""/>
-            <img class="panel" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" alt=""/>
+            </div>
+            <div class="panel inline-flex w-full cursor-pointer">
+                <img @click="router.push('/details/01891d544470708287dd102981fd7217')" class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/TWIYGeorgMoritz.jpeg" alt=""/>
+                <img @click="router.push('/details/cce88d400a03433cad81e0759c3c3f39')" class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/blyssumSketch2.jpeg" alt=""/>
+
+            </div>
+
         </Flicking>
 
         <div class="p-5 text-center border-x-2 border-borderGray text-lg text-textBeige font-serif">
