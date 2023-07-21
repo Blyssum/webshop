@@ -55,13 +55,13 @@ onMounted(async () => {
 
         <Flicking :plugins="plugins" class="border-borderGray border-x-2" :options="{ align: 'prev', circular: true }">
             <div class="panel inline-flex w-full cursor-pointer">
-                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz2.jpeg" alt=""/>
-                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/moritz1.jpeg" alt=""/>3
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/diashow1.jpeg" alt=""/>
+                <img class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/diashow3.jpeg" alt=""/>3
 
             </div>
             <div class="panel inline-flex w-full cursor-pointer">
-                <img @click="router.push('/details/01891d544470708287dd102981fd7217')" class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/TWIYGeorgMoritz.jpeg" alt=""/>
-                <img @click="router.push('/details/cce88d400a03433cad81e0759c3c3f39')" class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/blyssumSketch2.jpeg" alt=""/>
+                <img @click="router.push('/details/01891d544470708287dd102981fd7217')" class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/diashow2.jpeg" alt=""/>
+                <img @click="router.push('/details/cce88d400a03433cad81e0759c3c3f39')" class="w-1/2 aspect-auto object-cover" src="~assets/images/diashow/diashow4.jpeg" alt=""/>
 
             </div>
 
