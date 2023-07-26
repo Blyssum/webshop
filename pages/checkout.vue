@@ -72,11 +72,11 @@ async function applyPromotionCode(): Promise<void> {
                 <div class="mt-2">
                     <input type="checkbox" class="mr-0.5" v-model="acceptedPolicy">
 
-                    Ich habe die
-                    <nuxt-link to="/policy" class="underline underline-offset-2 text-purple-600">AGB</nuxt-link>
-                    und den
-                    <nuxt-link to="/policy" class="underline underline-offset-2 text-purple-600">Datenschutz</nuxt-link>
-                    gelesen und bin einverstanden.
+                    I have read the
+                    <nuxt-link to="/policy" class="underline underline-offset-2 text-purple-600">Terms & Conditions</nuxt-link>
+                    and the
+                    <nuxt-link to="/policy" class="underline underline-offset-2 text-purple-600">Data Protection</nuxt-link>
+                    and accept.
                 </div>
             </div>
 

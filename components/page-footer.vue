@@ -5,14 +5,14 @@
 <template>
     <div class="text-textBeige font-serif border-x-2 border-borderGray grid-cols-5 grid p-4 text-sm lg:text-base">
         <div class="flex flex-col col-span-2">
-            <nuxt-link to="/contact" class="footerButton">Kontakt</nuxt-link>
+            <nuxt-link to="/contact" class="footerButton">Contact</nuxt-link>
             <nuxt-link to="/about" class="footerButton">About</nuxt-link>
-            <nuxt-link to="/shipping" class="footerButton">Versandkosten</nuxt-link>
+            <nuxt-link to="/shipping" class="footerButton">Shipping</nuxt-link>
         </div>
         <div class="flex flex-col col-span-2">
-            <nuxt-link to="/policy" class="footerButton">AGB</nuxt-link>
-            <nuxt-link to="/policy" class="footerButton">Datenschutz</nuxt-link>
-            <nuxt-link to="/policy" class="footerButton">Impressum</nuxt-link>
+            <nuxt-link to="/policy" class="footerButton">Terms & Conditions</nuxt-link>
+            <nuxt-link to="/policy" class="footerButton">Data Protection</nuxt-link>
+            <nuxt-link to="/policy" class="footerButton">Imprint</nuxt-link>
         </div>
         <div>
             <nuxt-link target="_blank" to="https://instagram.com/blyssum.clothing">

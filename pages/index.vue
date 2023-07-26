@@ -87,7 +87,7 @@ onMounted(async () => {
             <nuxt-link
                     class="mx-auto flex text-center border-2 border-buttonBeige rounded-full px-6 py-1 mt-5 hover:bg-white hover:text-black transition-all w-fit"
                     to="/products">
-                Alle Produkte
+                All Products
             </nuxt-link>
         </div>
     </div>

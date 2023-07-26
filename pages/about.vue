@@ -16,14 +16,14 @@ useHead({
         <img class="border-x-2 border-borderGray" src="~/assets/images/aboutBild.png"/>
 
         <div class="p-5 leading-6 text-sm md:text-base md:leading-8 object-contain h-full border-x-2 border-borderGray text-textBeige font-serif indent-7">
-            Wir sind Blyssum, eine neue Bekleidungsmarke bestehend aus jungen und unabhängigen Designern.
-            Seit Anfang 2023 verbessern wir kontinuierlich unsere Designs und Ideen. Als in Deutschland ansässiges
-            Unternehmen produzieren wir so fair wie möglich, indem wir grüne Energien und hochwertige Ressourcen
-            verwenden. Da wir im Print-on-Demand-Verfahren produzieren, stellen wir nur die Dinge her, die wir wirklich
-            benötigen. Auf diese Weise vermeiden wir Überproduktion, die unnötig Ressourcen verbraucht.
-            Unser Blank Herrsteller STANLEY/STELLA ist Mitglied der FairWear Foundation (FWF). Dadurch wird garantiert,
-            dass die Arbeitskräfte, die für die Herstellung der Textilien in Asien arbeiten, fair behandelt sowie
-            entlohnt werden.
+            We are Blyssum, a new clothing brand consisting of young and independent designers.
+            We have been continuously improving our designs and ideas since the beginning of 2023. As a German based
+            company, we produce as fairly as possible, using green energy and high quality resources.
+            resources. Since we produce in a print-on-demand process, we only make the things we really
+            need. In this way, we avoid overproduction that unnecessarily consumes resources.
+            Our blank master STANLEY/STELLA is a member of the FairWear Foundation (FWF). This guarantees
+            that the workers who produce the textiles in Asia are treated and paid fairly.
+            paid.
         </div>
     </div>
 </template>

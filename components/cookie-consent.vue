@@ -34,52 +34,52 @@ onMounted(() => {
 <template>
     <div v-if="!selected" class="p-5 text-textBeige font-serif border-x-2 border-borderGray text-sm">
 
-        <div v-if="!customSettings">BLYSSUM.COM verwendet verschiedene Cookies. Technisch notwendige Cookies ermöglichen eine reibungslose Nutzung der Seite, darunter Produktwahl und Warenkorbfunktionen. Zudem nutzen wir Cookies zur Analyse und fortlaufenden Verbesserung der Website-Nutzung. Außerdem ermöglichen sie gezielte Werbeanzeigen, die Ihren Interessen entsprechen – sowohl auf unseren Seiten als auch außerhalb.
-
+        <div v-if="!customSettings">
+            BLYSSUM.COM uses various cookies. Technically necessary cookies enable smooth use of the site, including product selection and shopping cart functions. In addition, we use cookies to analyze and continuously improve website usage. They also enable targeted advertisements that match your interests - both on and off our pages.
         </div>
 
         <div v-else>
         BLYSSUM COOKIES
         <br><br>
-        Notwendige Cookies:
+            Required cookies::
         <br>
-        Die notwendigen Cookies sind unerlässlich, um die grundlegenden Funktionen und Dienste auf
-        unserer Website bereitzustellen. Dazu gehören auch Navigation, Warenkorb und Zahlungsvorgänge.
-        Ohne diese Cookies kann die Website nicht optimal funktionieren.
+            The necessary cookies are essential to provide the basic functions and services on
+            our website. This includes navigation, shopping cart and payment transactions.
+            Without these cookies, the website cannot function optimally.
         <br><br>
-        Präferenz-Cookies:
+            Preference cookies:
         <br>
-        Die Präferenz-Cookies ermöglichen es der Website, sich an Ihre bevorzugten Einstellungen wie
-        Sprache oder Währung zu erinnern. Diese Cookies machen Ihr Erlebnis personalisierter und
-        angenehmer.
+            The preference cookies enable the website to remember your preferred settings such as
+            Language or currency. These cookies make your experience more personalized and
+            more pleasant.
         <br><br>
-        Analytische Cookies:
+            Analytical cookies:
         <br>
-        Analytische Cookies sammeln Informationen darüber, wie Besucher unsere Website nutzen. Diese
-        Informationen helfen uns dabei, die Seitenleistung zu verbessern und das Nutzererlebnis zu
-        optimieren.
+            Analytical cookies collect information about how visitors use our website. This
+            information helps us improve site performance and optimize the user experience.
+            optimize.
         <br><br>
-        Marketing-Cookies:
+            Marketing cookies:
         <br>
-        Marketing-Cookies helfen uns dabei, relevante Werbung für unsere Produkte anzuzeigen, die auf
-        Ihre Interessen abgestimmt sind. Wir verwenden diese Cookies auch, um die Wirksamkeit unserer
-        Marketingkampagnen zu messen.
+            Marketing cookies help us to display relevant advertisements for our products that are tailored to
+            Your interests. We also use these cookies to measure the effectiveness of our
+            marketing campaigns.
         <br><br>
-        Social Media-Cookies:
+            Social media cookies:
         <br>
-        Social Media-Cookies ermöglichen es, Social Media-Plugins auf unserer Website zu integrieren.
-        Über diese Plugins können Sie Inhalte direkt über soziale Netzwerke teilen oder "liken". Die Social
-        Media-Cookies sind nicht bei uns gespeichert, sondern werden von den Social Media-Seiten selbst
-        gesetzt.
+            Social media cookies enable social media plugins to be integrated on our website.
+            These plugins allow you to share or "like" content directly via social networks. The social
+            media cookies are not stored by us, but are set by the social media sites themselves.
+            set.
 
         </div>
 
         <div class="mt-3">
-            <button @click="setCookieSettings('all')" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">ALLE COOKIES AKZEPTIEREN</button>
-            <button @click="setCookieSettings('required')" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">NUR TECHNISCHE COOKIES</button>
-            <button v-if="!customSettings" @click="customSettings=true" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">EIGENE AUSWAHL</button>
+            <button @click="setCookieSettings('all')" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">ACCEPT ALL COOKIES</button>
+            <button @click="setCookieSettings('required')" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">TECHNICAL COOKIES ONLY</button>
+            <button v-if="!customSettings" @click="customSettings=true" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">SELECTED</button>
 
-            <button v-else @click="setCookieSettings('own')" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">AKZEPTIEREN</button>
+            <button v-else @click="setCookieSettings('own')" class="w-full md:w-72 border-2 border-buttonBeige px-3 hover:underline underline-offset-2 m-0.5">ACCEPT</button>
 
         </div>
     </div>

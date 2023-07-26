@@ -131,8 +131,8 @@ onMounted(async () => {
 });
 </script>
 <template>
-    <div> Disclaimer 1: Der Zahlungsprozess geht gewollt durch zwei Phasen. Die erste dient ausschließlich als Bestätigung und keine Transaktion wird getätigt.</div>
-    <div class="mt-2"> Disclaimer 2: Sobald du in Schritt 2 auf Zahlung abschließen drückst ist deine Transaktion bestätigt.</div>
+    <div> Disclaimer 1: The payment process is going through two phases. This is wanted behaviour. The first one is only for authorization and no transaction is actually being made.</div>
+    <div class="mt-2"> Disclaimer 2: Your order has succeeded as soon as you confirm your transaction in step 2</div>
 
     <div v-if="!orderCreated">
         <div class="px-5 pb-5">
@@ -176,17 +176,17 @@ onMounted(async () => {
     </div>
     <div v-else class="mt-5">
         <a class="mb-4 text-xl text-textBeige" >
-            Deine Bestellung
+            Your order
             <mark class="px-2 text-purple-600 bg-almostBlack rounded"
             >#{{ orderCreated.orderNumber }}
             </mark>
-            wurde erstellt! Um deine Bestellung abzuschließen musst du noch überweisen.
+            was created! To finish your order you will need to confirm your transaction.
         </a>
         <div class="mt-4 p-6 border-2 border-borderGray rounded-lg text-textBeige font-serif" >
             <h5
                     class="mb-2 text-2xl font-bold tracking-tight"
             >
-                Adresse
+                Address
             </h5>
             <p class="font-normal">
                 {{ orderCreated.addresses?.[0]?.firstName }}
@@ -220,7 +220,7 @@ onMounted(async () => {
                         :href="redirectPaymentUrl"
                         class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white bg-purple-800 rounded-lg hover:bg-purple-900"
                 >
-                    Schließe deine Zahlung ab
+                    Confirm your transaction.
                     <svg
                             class="ml-2 -mr-1 w-5 h-5"
                             fill="currentColor"

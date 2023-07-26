@@ -129,7 +129,7 @@ onMounted(async () => {
 
         </div>
         <div v-if="cartItems.length==0" class="text-lg p-5 text-center border-x-2 border-borderGray text-textBeige font-serif">
-            Einkaufswagen ist leer
+            Your shopping cart is empty
         </div>
     </div>
 </template>

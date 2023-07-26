@@ -18,7 +18,7 @@ const count = ref(1);
 
 const addToCartProxy = async () => {
 
-    pushInfo(count.value + (count.value == 1 ? ' Gegenstand' : ' Gegenstände') + ' zum Einkaufswagen hinzugefügt', {timeout: 3000});
+    pushInfo(count.value + (count.value == 1 ? ' Procuct was' : ' Procuts were') + ' added to your shopping cart.', {timeout: 3000});
     console.log(product)
     const {addToCart, quantity} = useAddToCart(product);
     quantity.value = count.value;
